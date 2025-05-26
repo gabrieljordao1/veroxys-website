@@ -5,6 +5,55 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Veroxys – Advanced Trading Solutions</title>
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- Flip‐card CSS -->
+  <style>
+    .flip-card {
+      perspective: 1000px;
+    }
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.8s;
+    }
+    .flip-card-inner.flipped {
+      transform: rotateY(180deg);
+    }
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      top: 0;
+      left: 0;
+    }
+    .flip-card-back {
+      transform: rotateY(180deg);
+      padding: 2.5rem;
+      background: rgba(26, 61, 92, 0.1);
+      border-radius: 15px;
+    }
+    /* Ensure the flip button sits at bottom of both faces */
+    .flip-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .flip-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(74, 123, 167, 0.3);
+    }
+  </style>
 </head>
 <body>
   <!-- Particles Background -->
@@ -73,143 +122,163 @@
   <section class="products" id="products">
     <h2 class="section-title">Our Expert Advisors</h2>
     <div class="products-grid">
+
       <!-- High-Return EA -->
-      <div class="product-card">
-        <div class="product-header">
-          <h3 class="product-name">High-Return EA</h3>
-          <span class="product-badge badge-high-risk">High Risk</span>
-        </div>
-        <div class="product-stats">
-          <div class="stat-item">
-            <div class="stat-label">Total Profit</div>
-            <div class="stat-value">$1,158,559</div>
+      <div class="product-card flip-card">
+        <div class="flip-card-inner">
+          <!-- Front Face -->
+          <div class="flip-card-front">
+            <div class="product-header">
+              <h3 class="product-name">High-Return EA</h3>
+              <span class="product-badge badge-high-risk">High Risk</span>
+            </div>
+            <div class="product-stats">
+              <div class="stat-item">
+                <div class="stat-label">Total Profit</div>
+                <div class="stat-value">$1,158,559</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Annual Return</div>
+                <div class="stat-value">485.15%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Monthly Return</div>
+                <div class="stat-value">40.43%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Total Return</div>
+                <div class="stat-value">1,940.61%</div>
+              </div>
+            </div>
+            <p class="product-description">
+              Designed for risk-tolerant traders seeking maximum returns in volatile markets.
+            </p>
+            <button class="flip-btn">Learn More</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Annual Return</div>
-            <div class="stat-value">485.15%</div>
+
+          <!-- Back Face -->
+          <div class="flip-card-back">
+            <h5>How It Trades</h5>
+            <p>Breakout & scalp strategies on MNQ futures using ATR-based dynamic trailing stops, high leverage and optimized money management.</p>
+            <h5>Backtest Highlights</h5>
+            <p>
+              Total Profit: $1,158,559<br />
+              Annualized Return: 485.15%<br />
+              Monthly Avg: 40.43%<br />
+              4-Year Return: 1,940.61%
+            </p>
+            <h5>Risk Profile</h5>
+            <p>Very high volatility—expect large drawdowns. For experienced traders only.</p>
+            <h5>Pricing</h5>
+            <p>One-time: $1,499 | Subscription: $149/mo</p>
+            <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
+            <button class="flip-btn">Back</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Monthly Return</div>
-            <div class="stat-value">40.43%</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Total Return</div>
-            <div class="stat-value">1,940.61%</div>
-          </div>
-        </div>
-        <p class="product-description">
-          Designed for risk-tolerant traders seeking maximum returns in volatile markets.
-        </p>
-        <button class="product-cta">Learn More</button>
-        <div class="product-detail">
-          <h5>How It Trades</h5>
-          <p>Breakout & scalp strategies on MNQ futures using ATR-based dynamic trailing stops, high leverage and optimized money management.</p>
-          <h5>Backtest Highlights</h5>
-          <p>
-            Total Profit: $1,158,559<br />
-            Annualized Return: 485.15%<br />
-            Monthly Avg: 40.43%<br />
-            4-Year Return: 1,940.61%
-          </p>
-          <h5>Risk Profile</h5>
-          <p>Very high volatility—expect large drawdowns. For experienced traders only.</p>
-          <h5>Pricing</h5>
-          <p>One-time: $1,499 | Subscription: $149/mo</p>
-          <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
         </div>
       </div>
 
       <!-- Moderate-Risk EA -->
-      <div class="product-card">
-        <div class="product-header">
-          <h3 class="product-name">Moderate-Risk EA</h3>
-          <span class="product-badge badge-moderate">Balanced</span>
-        </div>
-        <div class="product-stats">
-          <div class="stat-item">
-            <div class="stat-label">Total Profit</div>
-            <div class="stat-value">$81,025</div>
+      <div class="product-card flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="product-header">
+              <h3 class="product-name">Moderate-Risk EA</h3>
+              <span class="product-badge badge-moderate">Balanced</span>
+            </div>
+            <div class="product-stats">
+              <div class="stat-item">
+                <div class="stat-label">Total Profit</div>
+                <div class="stat-value">$81,025</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Annual Return</div>
+                <div class="stat-value">135.37%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Monthly Return</div>
+                <div class="stat-value">11.28%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Total Return</div>
+                <div class="stat-value">541.47%</div>
+              </div>
+            </div>
+            <p class="product-description">
+              Steady growth with Smart Money Concepts and controlled risk.
+            </p>
+            <button class="flip-btn">Learn More</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Annual Return</div>
-            <div class="stat-value">135.37%</div>
+          <div class="flip-card-back">
+            <h5>How It Trades</h5>
+            <p>Smart-Money Concepts: BoS + Fair Value Gap entries, 4:1 R:R, liquidity-hunt detection on 15-min MNQ charts.</p>
+            <h5>Backtest Highlights</h5>
+            <p>
+              Total Profit: $81,025<br />
+              Annualized Return: 135.37%<br />
+              Monthly Avg: 11.28%<br />
+              4-Year Return: 541.47%
+            </p>
+            <h5>Risk Profile</h5>
+            <p>Moderate drawdowns (~10%), balanced position sizing.</p>
+            <h5>Pricing</h5>
+            <p>One-time: $999 | Subscription: $99/mo</p>
+            <a href="purchase.html?ea=balanced" class="buy-button">Buy Now</a>
+            <button class="flip-btn">Back</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Monthly Return</div>
-            <div class="stat-value">11.28%</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Total Return</div>
-            <div class="stat-value">541.47%</div>
-          </div>
-        </div>
-        <p class="product-description">
-          Steady growth with Smart Money Concepts and controlled risk.
-        </p>
-        <button class="product-cta">Learn More</button>
-        <div class="product-detail">
-          <h5>How It Trades</h5>
-          <p>Smart-Money Concepts: BoS + Fair Value Gap entries, 4:1 R:R, liquidity-hunt detection on 15-min MNQ charts.</p>
-          <h5>Backtest Highlights</h5>
-          <p>
-            Total Profit: $81,025<br />
-            Annualized Return: 135.37%<br />
-            Monthly Avg: 11.28%<br />
-            4-Year Return: 541.47%
-          </p>
-          <h5>Risk Profile</h5>
-          <p>Moderate drawdowns (~10%), balanced position sizing.</p>
-          <h5>Pricing</h5>
-          <p>One-time: $999 | Subscription: $99/mo</p>
-          <a href="purchase.html?ea=balanced" class="buy-button">Buy Now</a>
         </div>
       </div>
 
       <!-- Conservative EA -->
-      <div class="product-card">
-        <div class="product-header">
-          <h3 class="product-name">Conservative EA</h3>
-          <span class="product-badge badge-conservative">Low Risk</span>
-        </div>
-        <div class="product-stats">
-          <div class="stat-item">
-            <div class="stat-label">Total Profit</div>
-            <div class="stat-value">$233,695</div>
+      <div class="product-card flip-card">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div class="product-header">
+              <h3 class="product-name">Conservative EA</h3>
+              <span class="product-badge badge-conservative">Low Risk</span>
+            </div>
+            <div class="product-stats">
+              <div class="stat-item">
+                <div class="stat-label">Total Profit</div>
+                <div class="stat-value">$233,695</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Annual Return</div>
+                <div class="stat-value">26.30%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Monthly Return</div>
+                <div class="stat-value">2.19%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Total Return</div>
+                <div class="stat-value">105.20%</div>
+              </div>
+            </div>
+            <p class="product-description">
+              Capital-preserving trend-following with strict risk controls.
+            </p>
+            <button class="flip-btn">Learn More</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Annual Return</div>
-            <div class="stat-value">26.30%</div>
+          <div class="flip-card-back">
+            <h5>How It Trades</h5>
+            <p>EMA crossover (9/21), ATR-based stops & targets, conservative 1.5:1 R:R on 15-min MNQ charts.</p>
+            <h5>Backtest Highlights</h5>
+            <p>
+              Total Profit: $233,695<br />
+              Annualized Return: 26.30%<br />
+              Monthly Avg: 2.19%<br />
+              4-Year Return: 105.20%
+            </p>
+            <h5>Risk Profile</h5>
+            <p>Low drawdowns (<5%), conservative sizing—ideal for prop firms and risk-averse traders.</p>
+            <h5>Pricing</h5>
+            <p>One-time: $499 | Subscription: $49/mo</p>
+            <a href="purchase.html?ea=conservative" class="buy-button">Buy Now</a>
+            <button class="flip-btn">Back</button>
           </div>
-          <div class="stat-item">
-            <div class="stat-label">Monthly Return</div>
-            <div class="stat-value">2.19%</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-label">Total Return</div>
-            <div class="stat-value">105.20%</div>
-          </div>
-        </div>
-        <p class="product-description">
-          Capital-preserving trend-following with strict risk controls.
-        </p>
-        <button class="product-cta">Learn More</button>
-        <div class="product-detail">
-          <h5>How It Trades</h5>
-          <p>EMA crossover (9/21), ATR-based stops & targets, conservative 1.5:1 R:R on 15-min MNQ charts.</p>
-          <h5>Backtest Highlights</h5>
-          <p>
-            Total Profit: $233,695<br />
-            Annualized Return: 26.30%<br />
-            Monthly Avg: 2.19%<br />
-            4-Year Return: 105.20%
-          </p>
-          <h5>Risk Profile</h5>
-          <p>Low drawdowns (<5%), conservative sizing—ideal for prop firms and risk-averse traders.</p>
-          <h5>Pricing</h5>
-          <p>One-time: $499 | Subscription: $49/mo</p>
-          <a href="purchase.html?ea=conservative" class="buy-button">Buy Now</a>
         </div>
       </div>
+
     </div>
   </section>
 
@@ -217,6 +286,7 @@
   <section class="features" id="features">
     <h2 class="section-title">Why Choose Veroxys</h2>
     <div class="features-grid">
+      <!-- feature cards… -->
       <div class="feature-card">
         <div class="feature-icon">📊</div>
         <h3 class="feature-title">Advanced Analytics</h3>
@@ -305,5 +375,14 @@
   </footer>
 
   <script src="main.js"></script>
+  <!-- Flip‐card JS -->
+  <script>
+    document.querySelectorAll('.flip-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const inner = btn.closest('.flip-card-inner');
+        inner.classList.toggle('flipped');
+      });
+    });
+  </script>
 </body>
 </html>
