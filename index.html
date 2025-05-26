@@ -73,6 +73,7 @@
   <section class="products" id="products">
     <h2 class="section-title">Our Expert Advisors</h2>
     <div class="products-grid">
+
       <!-- High-Return EA -->
       <div class="product-card">
         <div class="product-header">
@@ -106,9 +107,9 @@
           <p>Breakout & scalp strategies on MNQ futures using ATR-based dynamic trailing stops, high leverage and optimized money management.</p>
           <h5>Backtest Highlights</h5>
           <p>
-            Total Profit: $1,158,559<br>
-            Annualized Return: 485.15%<br>
-            Monthly Avg: 40.43%<br>
+            Total Profit: $1,158,559<br />
+            Annualized Return: 485.15%<br />
+            Monthly Avg: 40.43%<br />
             4-Year Return: 1,940.61%
           </p>
           <h5>Risk Profile</h5>
@@ -152,9 +153,9 @@
           <p>Smart-Money Concepts: BoS + Fair Value Gap entries, 4:1 R:R, liquidity-hunt detection on 15-min MNQ charts.</p>
           <h5>Backtest Highlights</h5>
           <p>
-            Total Profit: $81,025<br>
-            Annualized Return: 135.37%<br>
-            Monthly Avg: 11.28%<br>
+            Total Profit: $81,025<br />
+            Annualized Return: 135.37%<br />
+            Monthly Avg: 11.28%<br />
             4-Year Return: 541.47%
           </p>
           <h5>Risk Profile</h5>
@@ -198,9 +199,9 @@
           <p>EMA crossover (9/21), ATR-based stops & targets, conservative 1.5:1 R:R on 15-min MNQ charts.</p>
           <h5>Backtest Highlights</h5>
           <p>
-            Total Profit: $233,695<br>
-            Annualized Return: 26.30%<br>
-            Monthly Avg: 2.19%<br>
+            Total Profit: $233,695<br />
+            Annualized Return: 26.30%<br />
+            Monthly Avg: 2.19%<br />
             4-Year Return: 105.20%
           </p>
           <h5>Risk Profile</h5>
@@ -255,21 +256,22 @@
     <h2>About Veroxys</h2>
     <div class="about-content">
       <p>
-        Founded by PhD-level quants, former hedge-fund traders and veteran engineers, Veroxys
-        brings over 50 years of combined expertise to algorithmic futures trading.
+        Founded by PhD-level quants, former hedge-fund traders and veteran software engineers,
+        Veroxys brings over 50 years of combined expertise to algorithmic futures trading.
       </p>
       <p>
         Our lead developer spent a decade building alpha-generating strategies at a top-tier
-        NYC hedge fund, while our CTO architected low-latency execution systems for global
-        institutions.
+        New York hedge fund, while our CTO architected low-latency execution systems for
+        global institutions.
       </p>
       <p>
         We fuse rigorous academic research—published in the Journal of Financial Markets—
-        with production-grade code and sub-millisecond connectivity.
+        with production-grade code and sub-millisecond connectivity. Every EA undergoes
+        months of walk-forward testing and Monte Carlo analysis before release.
       </p>
       <p>
         At Veroxys, we’re traders first—our mission is to democratize institutional-grade
-        algorithms with full transparency, robust risk controls and best-in-class support.
+        algorithms with full transparency, rock-solid risk controls and best-in-class support.
       </p>
     </div>
   </section>
@@ -291,5 +293,54 @@
   </footer>
 
   <script src="main.js"></script>
+
+  <!-- ================= AI CHAT WIDGET ================= -->
+  <style>
+    #chat-button {
+      position: fixed;
+      bottom: 20px; right: 20px;
+      width: 50px; height: 50px;
+      background: var(--accent-blue);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; cursor: pointer; z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.3s;
+    }
+    #chat-button:hover { background: var(--primary-blue); }
+    #chat-container {
+      position: fixed; bottom: 80px; right: 20px;
+      width: 350px; height: 450px;
+      display: none; z-index: 10000;
+      border: 2px solid var(--accent-blue);
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    }
+    #chat-close {
+      position: absolute; top: 6px; right: 8px;
+      color: var(--text-light); font-size: 18px;
+      cursor: pointer; z-index: 10001;
+    }
+  </style>
+
+  <div id="chat-button" title="Chat with AI">💬</div>
+  <div id="chat-container">
+    <div id="chat-close" title="Close chat">✕</div>
+    <iframe
+      src="https://hf.space/embed/yuntian-deng/ChatGPT/?__theme=light"
+      width="100%" height="100%" frameborder="0">
+    </iframe>
+  </div>
+
+  <script>
+    const chatBtn = document.getElementById('chat-button');
+    const chatContainer = document.getElementById('chat-container');
+    const chatClose = document.getElementById('chat-close');
+    chatBtn.addEventListener('click', () => chatContainer.style.display = 'block');
+    chatClose.addEventListener('click', () => chatContainer.style.display = 'none');
+  </script>
+  <!-- =============== end AI CHAT WIDGET =============== -->
+
 </body>
 </html>
