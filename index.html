@@ -432,6 +432,57 @@
             line-height: 1.6;
         }
 
+        /* About Section */
+        .about {
+            padding: 5rem 5%;
+            background: rgba(10, 15, 28, 0.9);
+            color: var(--text-light);
+        }
+        .about h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .about-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+        .about-content h3 {
+            margin-top: 2rem;
+            font-size: 1.5rem;
+            color: var(--accent-blue);
+        }
+        .about-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0 2rem;
+        }
+        .about-content th, .about-content td {
+            border: 1px solid rgba(74,123,167,0.3);
+            padding: 0.75rem;
+            text-align: left;
+        }
+        .about-content th {
+            background: rgba(74,123,167,0.2);
+        }
+        .ea-subsection {
+            margin-top: 1.5rem;
+            padding-left: 1rem;
+            border-left: 3px solid var(--accent-blue);
+        }
+        .ea-subsection h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+            color: var(--text-light);
+        }
+        .ea-subsection p {
+            margin-bottom: 0.5rem;
+        }
+
         /* Footer */
         footer {
             padding: 3rem 5%;
@@ -462,31 +513,25 @@
             color: var(--text-light);
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
             }
-            
             .hero h1 {
                 font-size: 2rem;
             }
-            
             .products-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
             .cube {
                 width: 150px;
                 height: 150px;
             }
-            
             .cube-face {
                 width: 150px;
                 height: 150px;
             }
-            
             .cube-face:nth-child(1) { transform: translateZ(75px); }
             .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(75px); }
             .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(75px); }
@@ -592,7 +637,7 @@
     <section class="products" id="products">
         <h2 class="section-title">Our Expert Advisors</h2>
         <div class="products-grid">
-            <!-- High-Return EA -->
+            <!-- Ultra-Aggressive EA -->
             <div class="product-card">
                 <div class="product-header">
                     <h3 class="product-name">High-Return EA</h3>
@@ -622,7 +667,7 @@
                 <a href="#" class="product-cta">Learn More</a>
             </div>
 
-            <!-- Moderate-Risk EA -->
+            <!-- Balanced EA -->
             <div class="product-card">
                 <div class="product-header">
                     <h3 class="product-name">Moderate-Risk EA</h3>
@@ -721,6 +766,66 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="about" id="about">
+        <h2>About Veroxys EAs</h2>
+        <div class="about-content">
+            <h3>License Agreement & Disclosures</h3>
+            <p>
+                This License Agreement (“Agreement”) is between <strong>Veroxys LLC</strong> (“Licensor”) and you, the purchaser or user (“Licensee”). By installing or using our EAs, you agree to the full terms below.
+            </p>
+            <p><strong>Grant of License:</strong> Non-exclusive, non-transferable, revocable license to run one copy on up to [X] accounts. No reverse-engineering. All sales final—no refunds.</p>
+            <p><strong>Risk Disclosure:</strong> Past backtests (up to 541.47% annualized) are not guarantees. Trading MNQ futures carries risk of slippage, margin calls, and total capital loss. You alone choose parameters and position sizing.</p>
+            <p><strong>Disclaimer:</strong> EAs are provided “as-is,” without warranty of fitness or merchantability. Licensor’s liability is capped at the amount you paid in the prior 12 months.</p>
+
+            <h3>Fees & Payment</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>EA Tier</th>
+                        <th>One-Time License Fee</th>
+                        <th>Monthly Subscription</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Conservative EA</td>
+                        <td>$499</td>
+                        <td>$49 / mo</td>
+                    </tr>
+                    <tr>
+                        <td>Balanced (Core) EA</td>
+                        <td>$999</td>
+                        <td>$99 / mo</td>
+                    </tr>
+                    <tr>
+                        <td>Ultra-Aggressive EA</td>
+                        <td>$1,499</td>
+                        <td>$149 / mo</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="ea-subsection" id="about-conservative">
+                <h4>Conservative EA</h4>
+                <p><strong>Description:</strong> Strict risk controls, steady compounding (~26.3% annual). Ideal for capital preservation in prop-firm environments.</p>
+                <p><strong>Pricing:</strong> $499 one‐time or $49/mo subscription.</p>
+            </div>
+
+            <div class="ea-subsection" id="about-balanced">
+                <h4>Balanced (Core) EA</h4>
+                <p><strong>Description:</strong> Smart-Money Concepts with 100% average annual return. Balances growth and risk for retail traders.</p>
+                <p><strong>Pricing:</strong> $999 one‐time or $99/mo subscription.</p>
+            </div>
+
+            <div class="ea-subsection" id="about-ultra">
+                <h4>Ultra-Aggressive EA</h4>
+                <p><strong>Description:</strong> High-volatility breakout strategies targeting 540%+ annual returns. For maximum-performance seekers only.</p>
+                <p><strong>Pricing:</strong> $1,499 one‐time or $149/mo subscription.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer>
         <div class="footer-content">
@@ -802,19 +907,15 @@
         // Dynamic number animation
         function animateNumbers() {
             const numbers = document.querySelectorAll('.stat-number');
-            
             numbers.forEach(number => {
                 const finalValue = number.textContent;
                 const isPercentage = finalValue.includes('%');
                 const isCurrency = finalValue.includes('$');
                 const hasPlus = finalValue.includes('+');
-                
                 let numericValue = parseFloat(finalValue.replace(/[^0-9.-]/g, ''));
-                
                 if (isCurrency && finalValue.includes('M')) {
                     numericValue = numericValue * 1000000;
                 }
-                
                 let currentValue = 0;
                 const increment = numericValue / 100;
                 const timer = setInterval(() => {
@@ -823,7 +924,6 @@
                         currentValue = numericValue;
                         clearInterval(timer);
                     }
-                    
                     let displayValue = currentValue;
                     if (isCurrency) {
                         if (currentValue >= 1000000) {
@@ -837,7 +937,6 @@
                     } else {
                         displayValue = Math.floor(currentValue);
                     }
-                    
                     number.textContent = displayValue;
                 }, 20);
             });
@@ -853,6 +952,17 @@
         }, { threshold: 0.5 });
 
         statsObserver.observe(statsSection);
+
+        // Update Learn More links to scroll to the right subsection
+        document.querySelectorAll('.product-card').forEach(card => {
+            const name = card.querySelector('.product-name').textContent;
+            const link = card.querySelector('.product-cta');
+            let targetId = '';
+            if (name.includes('Conservative'))       targetId = '#about-conservative';
+            else if (name.includes('Moderate') || name.includes('Balanced')) targetId = '#about-balanced';
+            else if (name.includes('High-Return') || name.includes('Ultra'))  targetId = '#about-ultra';
+            link.setAttribute('href', targetId);
+        });
     </script>
 </body>
 </html>
