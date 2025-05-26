@@ -2,79 +2,163 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Veroxys – Advanced Trading Solutions</title>
-  <link rel="stylesheet" href="styles.css" />
-
-  <!-- Flip-card CSS -->
   <style>
-    /* Perspective container */
+    :root {
+      --primary-blue: #1a3d5c;
+      --accent-blue: #4a7ba7;
+      --light-blue: #a8c7e0;
+      --dark-bg: #0a0f1c;
+      --text-light: #e0e6ed;
+      --text-muted: #8892b0;
+      --danger: #ef4444;
+      --warning: #f59e0b;
+      --success: #22c55e;
+    }
+    body {
+      margin: 0; background: var(--dark-bg); color: var(--text-light);
+      font-family: -apple-system, BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      line-height:1.6;
+    }
+    /* NAV */
+    nav {
+      position:fixed; top:0; width:100%; padding:1rem 5%;
+      background:rgba(10,15,28,0.9); backdrop-filter:blur(10px); z-index:1000;
+    }
+    .nav-container {
+      max-width:1400px; margin:0 auto;
+      display:flex; justify-content:space-between; align-items:center;
+    }
+    .nav-links { list-style:none; display:flex; gap:2rem; }
+    .nav-links a { color:var(--text-muted); text-decoration:none; font-weight:500; }
+    .nav-links a:hover { color:var(--text-light); }
+    .cta-button {
+      background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
+      color:#fff; padding:0.5rem 1.5rem; border-radius:5px; text-decoration:none;
+      font-weight:600; transition: all .3s;
+    }
+    .cta-button:hover { transform:translateY(-2px); }
+
+    /* HERO */
+    .hero { min-height:100vh; padding:5rem 5%; display:flex; align-items:center; justify-content:center;
+      background:radial-gradient(ellipse at center, rgba(26,61,92,0.1)0%,transparent 70%);
+      position:relative;
+    }
+    .hero h1 {
+      font-size:clamp(2.5rem,5vw,4rem);
+      background:linear-gradient(135deg,var(--text-light),var(--accent-blue));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+      margin-bottom:1rem;
+    }
+    .hero p { color:var(--text-muted); font-size:1.25rem; margin-bottom:2rem; }
+
+    /* STATS */
+    .stats { padding:5rem 5%; }
+    .stats-container {
+      max-width:1200px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem;
+    }
+    .stat-card {
+      background:rgba(26,61,92,0.2); padding:2rem; border-radius:10px;
+      text-align:center; border:1px solid rgba(74,123,167,0.3);
+    }
+    .stat-number { font-size:2.5rem; color:var(--accent-blue); font-weight:700; }
+
+    /* PRODUCTS GRID */
+    .products { padding:5rem 5%; }
+    .products-grid {
+      max-width:1400px; margin:0 auto;
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:3rem;
+    }
+
+    /* FLIP-CARD CORE */
     .product-card {
-      perspective: 1000px;
-      margin: 1rem;
+      perspective:1000px;
     }
-
-    /* Inner wrapper: holds both faces & flips */
     .product-card-inner {
-      position: relative;
-      transform-style: preserve-3d;
-      transition: transform 0.8s ease;
-      /* Card styling moved here */
-      background: rgba(26, 61, 92, 0.1);
-      border: 1px solid rgba(74, 123, 167, 0.3);
-      border-radius: 15px;
-      padding: 2.5rem;
-      box-sizing: border-box;
-      height: auto;        /* adjusts to front-face height */
-      overflow: hidden;
+      position:relative;
+      transform-style:preserve-3d;
+      transition:transform .8s ease;
+      background:rgba(26,61,92,0.1);
+      border:1px solid rgba(74,123,167,0.3);
+      border-radius:15px;
+      padding:2.5rem;
+      box-sizing:border-box;
+      height:100%;
+      overflow:hidden;
     }
-    /* Flipped state */
     .product-card.flipped .product-card-inner {
-      transform: rotateY(180deg);
+      transform:rotateY(180deg);
     }
-
-    /* Front face: static flow */
-    .flip-front {
-      backface-visibility: hidden;
-      position: relative;
+    .flip-front, .flip-back {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      backface-visibility:hidden;
+      box-sizing:border-box;
     }
-
-    /* Back face: stacked & scrollable */
     .flip-back {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      backface-visibility: hidden;
-      transform: rotateY(180deg);
-      overflow-y: auto;
-      padding-right: 1rem; /* room for scrollbar */
+      transform:rotateY(180deg);
+      overflow-y:auto;
+      padding-right:1rem;
     }
 
-    /* Learn More / Back button */
+    /* INSIDE CARD CONTENT */
+    .product-header {
+      display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem;
+    }
+    .product-name { font-size:1.5rem; font-weight:700; }
+    .product-badge {
+      padding:0.25rem 0.75rem; border-radius:20px; font-size:0.875rem; font-weight:600;
+    }
+    .badge-high-risk { background:rgba(239,68,68,0.2); color:var(--danger); border:1px solid var(--danger); }
+    .badge-moderate { background:rgba(245,158,11,0.2); color:var(--warning); border:1px solid var(--warning); }
+    .badge-conservative { background:rgba(34,197,94,0.2); color:var(--success); border:1px solid var(--success); }
+
+    .product-stats {
+      display:grid; grid-template-columns:1fr 1fr; gap:1rem; margin-bottom:1.5rem;
+    }
+    .stat-item {
+      background:rgba(10,15,28,0.5); padding:1rem; border-radius:8px; text-align:center;
+    }
+    .stat-label { font-size:0.875rem; color:var(--text-muted); }
+    .stat-value { font-size:1.25rem; font-weight:700; color:var(--accent-blue); }
+
+    .product-description { color:var(--text-muted); margin-bottom:1.5rem; }
+
     .flip-btn {
-      margin-top: 1rem;
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-weight: 600;
-      transition: transform 0.3s, box-shadow 0.3s;
+      display:inline-block;
+      padding:0.75rem 1.5rem;
+      background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
+      color:#fff; border:none; border-radius:8px;
+      cursor:pointer; font-weight:600;
+      transition:transform .3s, box-shadow .3s;
     }
     .flip-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(74,123,167,0.3);
+      transform:translateY(-2px);
+      box-shadow:0 10px 20px rgba(74,123,167,0.3);
     }
+
+    /* FEATURES, ABOUT, CONTACT, FOOTER minimal styles */
+    .features, .about, .contact { padding:5rem 5%; }
+    .section-title {
+      text-align:center; font-size:2.5rem; margin-bottom:3rem;
+      background:linear-gradient(135deg,var(--text-light),var(--accent-blue));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+    }
+    footer {
+      padding:3rem 5%; background:rgba(10,15,28,0.8); text-align:center;
+      border-top:1px solid rgba(74,123,167,0.3);
+    }
+    .footer-links { display:flex; justify-content:center; gap:2rem; margin-bottom:2rem; }
+    .footer-links a { color:var(--text-muted); text-decoration:none; }
+    .footer-links a:hover { color:var(--text-light); }
   </style>
 </head>
 <body>
-  <!-- Navigation -->
   <nav id="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo">
-        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" /> VEROXYS
-      </a>
+      <a href="#home" class="logo"><img src="veroxys-logo.png" alt="Veroxys" class="logo-img"/> VEROXYS</a>
       <ul class="nav-links">
         <li><a href="#home">Home</a></li>
         <li><a href="#products">Products</a></li>
@@ -86,84 +170,60 @@
     </div>
   </nav>
 
-  <!-- Hero Section -->
   <section class="hero" id="home">
-    <!-- ... your existing hero markup ... -->
+    <div class="hero-content">
+      <h1>Advanced Trading Solutions</h1>
+      <p>Harness the power of algorithmic trading with our sophisticated Expert Advisors designed for futures markets</p>
+      <a href="#products" class="cta-button">Explore Our EAs</a>
+    </div>
   </section>
 
-  <!-- Stats Section -->
   <section class="stats">
-    <!-- ... your existing stats markup ... -->
+    <div class="stats-container">
+      <div class="stat-card"><div class="stat-number">$1.15M+</div><div>Total Profits Generated</div></div>
+      <div class="stat-card"><div class="stat-number">1,940%</div><div>Maximum Returns</div></div>
+      <div class="stat-card"><div class="stat-number">3</div><div>Specialized Strategies</div></div>
+      <div class="stat-card"><div class="stat-number">24/7</div><div>Automated Trading</div></div>
+    </div>
   </section>
 
-  <!-- Products Section -->
   <section class="products" id="products">
     <h2 class="section-title">Our Expert Advisors</h2>
     <div class="products-grid">
 
-      <!-- High-Return EA -->
+      <!-- HIGH-RETURN -->
       <div class="product-card">
         <div class="product-card-inner">
-
-          <!-- Front -->
           <div class="flip-front">
             <div class="product-header">
               <h3 class="product-name">High-Return EA</h3>
               <span class="product-badge badge-high-risk">High Risk</span>
             </div>
             <div class="product-stats">
-              <div class="stat-item">
-                <div class="stat-label">Total Profit</div>
-                <div class="stat-value">$1,158,559</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-label">Annual Return</div>
-                <div class="stat-value">485.15%</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-label">Monthly Return</div>
-                <div class="stat-value">40.43%</div>
-              </div>
-              <div class="stat-item">
-                <div class="stat-label">Total Return</div>
-                <div class="stat-value">1,940.61%</div>
-              </div>
+              <div class="stat-item"><div class="stat-label">Total Profit</div><div class="stat-value">$1,158,559</div></div>
+              <div class="stat-item"><div class="stat-label">Annual Return</div><div class="stat-value">485.15%</div></div>
+              <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">40.43%</div></div>
+              <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">1,940.61%</div></div>
             </div>
-            <p class="product-description">
-              Designed for risk-tolerant traders seeking maximum returns in volatile markets.
-            </p>
+            <p class="product-description">Designed for risk-tolerant traders seeking maximum returns in volatile markets.</p>
             <button class="flip-btn">Learn More</button>
           </div>
-
-          <!-- Back -->
           <div class="flip-back">
             <h5>How It Trades</h5>
-            <p>
-              Breakout & scalp strategies on MNQ futures using ATR-based trailing stops,
-              high leverage & optimized money management.
-            </p>
+            <p>Breakout & scalp strategies on MNQ futures using ATR-based trailing stops, high leverage & optimized money management.</p>
             <h5>Backtest Highlights</h5>
-            <p>
-              Total Profit: $1,158,559<br>
-              Annualized Return: 485.15%<br>
-              Monthly Avg: 40.43%<br>
-              4-Year Return: 1,940.61%
-            </p>
+            <p>Total Profit: $1,158,559<br>Annualized Return: 485.15%<br>Monthly Avg: 40.43%<br>4-Year Return: 1,940.61%</p>
             <h5>Risk Profile</h5>
-            <p>
-              High volatility—expect large drawdowns. For experienced traders only.
-            </p>
+            <p>High volatility—expect large drawdowns. For experienced traders only.</p>
             <h5>Pricing</h5>
-            <p>
-              One-time: $1,499 | Subscription: $149/mo
-            </p>
-            <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
+            <p>One-time: $1,499 | Subscription: $149/mo</p>
+            <a href="purchase.html?ea=ultra" class="cta-button">Buy Now</a>
             <button class="flip-btn">Back</button>
           </div>
         </div>
       </div>
 
-      <!-- Moderate-Risk EA -->
+      <!-- MODERATE-RISK -->
       <div class="product-card">
         <div class="product-card-inner">
           <div class="flip-front">
@@ -177,35 +237,25 @@
               <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">11.28%</div></div>
               <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">541.47%</div></div>
             </div>
-            <p class="product-description">
-              Steady growth with Smart Money Concepts & controlled risk.
-            </p>
+            <p class="product-description">Steady growth with Smart Money Concepts & controlled risk.</p>
             <button class="flip-btn">Learn More</button>
           </div>
           <div class="flip-back">
             <h5>How It Trades</h5>
-            <p>
-              BoS + Fair Value Gap entries on 15-min MNQ, 4:1 R:R,
-              liquidity-hunt detection.
-            </p>
+            <p>BoS + Fair Value Gap entries on 15-min MNQ, 4:1 R:R, liquidity-hunt detection.</p>
             <h5>Backtest Highlights</h5>
-            <p>
-              Total Profit: $81,025<br>
-              Annualized Return: 135.37%<br>
-              Monthly Avg: 11.28%<br>
-              4-Year Return: 541.47%
-            </p>
+            <p>Total Profit: $81,025<br>Annual Return: 135.37%<br>Monthly Avg:11.28%<br>4-Year Return:541.47%</p>
             <h5>Risk Profile</h5>
             <p>Moderate drawdowns (~10%), balanced sizing.</p>
             <h5>Pricing</h5>
             <p>One-time: $999 | Subscription: $99/mo</p>
-            <a href="purchase.html?ea=balanced" class="buy-button">Buy Now</a>
+            <a href="purchase.html?ea=balanced" class="cta-button">Buy Now</a>
             <button class="flip-btn">Back</button>
           </div>
         </div>
       </div>
 
-      <!-- Conservative EA -->
+      <!-- CONSERVATIVE -->
       <div class="product-card">
         <div class="product-card-inner">
           <div class="flip-front">
@@ -219,26 +269,19 @@
               <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">2.19%</div></div>
               <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">105.20%</div></div>
             </div>
-            <p class="product-description">
-              Capital-preserving trend-following with strict risk controls.
-            </p>
+            <p class="product-description">Capital-preserving trend-following with strict risk controls.</p>
             <button class="flip-btn">Learn More</button>
           </div>
           <div class="flip-back">
             <h5>How It Trades</h5>
             <p>EMA crossover (9/21), ATR stops, conservative 1.5:1 R:R on 15-min MNQ.</p>
             <h5>Backtest Highlights</h5>
-            <p>
-              Total Profit: $233,695<br>
-              Annualized Return: 26.30%<br>
-              Monthly Avg: 2.19%<br>
-              4-Year Return: 105.20%
-            </p>
+            <p>Total Profit: $233,695<br>Annualized Return:26.30%<br>Monthly Avg:2.19%<br>4-Year Return:105.20%</p>
             <h5>Risk Profile</h5>
             <p>Low drawdowns (<5%), conservative sizing—ideal for prop firms.</p>
             <h5>Pricing</h5>
             <p>One-time: $499 | Subscription: $49/mo</p>
-            <a href="purchase.html?ea=conservative" class="buy-button">Buy Now</a>
+            <a href="purchase.html?ea=conservative" class="cta-button">Buy Now</a>
             <button class="flip-btn">Back</button>
           </div>
         </div>
@@ -247,27 +290,9 @@
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
-    <!-- ... -->
-  </section>
+  <!-- Features, About, Contact, Footer (your existing markup) -->
 
-  <!-- About Section -->
-  <section class="about" id="about">
-    <!-- ... -->
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact">
-    <!-- ... -->
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <!-- ... -->
-  </footer>
-
-  <!-- Flip-card JavaScript -->
+  <!-- Flip JS -->
   <script>
     document.querySelectorAll('.flip-btn').forEach(btn =>
       btn.addEventListener('click', () =>
