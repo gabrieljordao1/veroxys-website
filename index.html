@@ -115,8 +115,98 @@
           <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
         </div>
       </div>
-      <!-- Balanced & Conservative cards… (unchanged) -->
-      <!-- … -->
+
+      <!-- Balanced EA -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name">Moderate-Risk EA</h3>
+          <span class="product-badge badge-moderate">Balanced</span>
+        </div>
+        <div class="product-stats">
+          <div class="stat-item">
+            <div class="stat-label">Total Profit</div>
+            <div class="stat-value">$81,025</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Annual Return</div>
+            <div class="stat-value">135.37%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Monthly Return</div>
+            <div class="stat-value">11.28%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Return</div>
+            <div class="stat-value">541.47%</div>
+          </div>
+        </div>
+        <p class="product-description">
+          Steady growth with Smart Money Concepts and controlled risk.
+        </p>
+        <button class="product-cta">Learn More</button>
+        <div class="product-detail">
+          <h5>How It Trades</h5>
+          <p>Smart-Money Concepts: BoS + Fair Value Gap entries, 4:1 R:R, liquidity-hunt detection on 15-min MNQ charts.</p>
+          <h5>Backtest Highlights</h5>
+          <p>
+            Total Profit: $81,025<br />
+            Annualized Return: 135.37%<br />
+            Monthly Avg: 11.28%<br />
+            4-Year Return: 541.47%
+          </p>
+          <h5>Risk Profile</h5>
+          <p>Moderate drawdowns (~10%), balanced position sizing.</p>
+          <h5>Pricing</h5>
+          <p>One-time: $999 | Subscription: $99/mo</p>
+          <a href="purchase.html?ea=balanced" class="buy-button">Buy Now</a>
+        </div>
+      </div>
+
+      <!-- Conservative EA -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name">Conservative EA</h3>
+          <span class="product-badge badge-conservative">Low Risk</span>
+        </div>
+        <div class="product-stats">
+          <div class="stat-item">
+            <div class="stat-label">Total Profit</div>
+            <div class="stat-value">$233,695</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Annual Return</div>
+            <div class="stat-value">26.30%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Monthly Return</div>
+            <div class="stat-value">2.19%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Return</div>
+            <div class="stat-value">105.20%</div>
+          </div>
+        </div>
+        <p class="product-description">
+          Capital-preserving trend-following with strict risk controls.
+        </p>
+        <button class="product-cta">Learn More</button>
+        <div class="product-detail">
+          <h5>How It Trades</h5>
+          <p>EMA crossover (9/21), ATR-based stops & targets, conservative 1.5:1 R:R on 15-min MNQ charts.</p>
+          <h5>Backtest Highlights</h5>
+          <p>
+            Total Profit: $233,695<br />
+            Annualized Return: 26.30%<br />
+            Monthly Avg: 2.19%<br />
+            4-Year Return: 105.20%
+          </p>
+          <h5>Risk Profile</h5>
+          <p>Low drawdowns (<5%), conservative sizing—ideal for prop firms and risk-averse traders.</p>
+          <h5>Pricing</h5>
+          <p>One-time: $499 | Subscription: $49/mo</p>
+          <a href="purchase.html?ea=conservative" class="buy-button">Buy Now</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -124,8 +214,7 @@
   <section class="features" id="features">
     <h2 class="section-title">Why Choose Veroxys</h2>
     <div class="features-grid">
-      <!-- feature cards… -->
-      <!-- … -->
+      <!-- feature cards omitted for brevity -->
     </div>
   </section>
 
@@ -188,26 +277,26 @@
   <!-- ================= AI CHAT WIDGET ================= -->
   <style>
     #chat-button {
-      position: fixed; bottom: 20px; right:20px;
-      width:50px; height:50px; background:var(--accent-blue);
-      color:white; border-radius:50%; display:flex;
-      align-items:center; justify-content:center;
-      font-size:24px; cursor:pointer; z-index:10000;
-      box-shadow:0 4px 12px rgba(0,0,0,0.3);
-      transition:background 0.3s;
+      position: fixed; bottom: 20px; right: 20px;
+      width: 50px; height: 50px; background: var(--accent-blue);
+      color: white; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 24px; cursor: pointer; z-index: 10000;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      transition: background 0.3s;
     }
-    #chat-button:hover { background:var(--primary-blue); }
+    #chat-button:hover { background: var(--primary-blue); }
     #chat-container {
-      position:fixed; bottom:80px; right:20px;
-      width:350px; height:450px; display:none;
-      z-index:10000; border:2px solid var(--accent-blue);
-      border-radius:8px; overflow:hidden;
-      box-shadow:0 8px 24px rgba(0,0,0,0.3);
+      position: fixed; bottom: 80px; right: 20px;
+      width: 350px; height: 450px; display: none;
+      z-index: 10000; border: 2px solid var(--accent-blue);
+      border-radius: 8px; overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
     }
     #chat-close {
-      position:absolute; top:6px; right:8px;
-      color:var(--text-light); font-size:18px;
-      cursor:pointer; z-index:10001;
+      position: absolute; top: 6px; right: 8px;
+      color: var(--text-light); font-size: 18px;
+      cursor: pointer; z-index: 10001;
     }
   </style>
 
@@ -215,7 +304,7 @@
   <div id="chat-container">
     <div id="chat-close" title="Close chat">✕</div>
     <iframe
-      src="https://hf.space/embed/yuntian-deng/ChatGPT/?__theme=light"
+      src="https://yuntian-deng-chatgpt.hf.space/?__theme=light"
       width="100%" height="100%" frameborder="0">
     </iframe>
   </div>
