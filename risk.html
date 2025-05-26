@@ -7,31 +7,70 @@
   <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
-  <nav id="navbar">…copy nav…</nav>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo">
+        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" />
+        VEROXYS
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#home">Home</a></li>
+        <li><a href="index.html#products">Products</a></li>
+        <li><a href="index.html#features">Features</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+      <a href="index.html#products" class="cta-button">Get Started</a>
+    </div>
+  </nav>
 
   <main style="padding:5rem 5%; max-width:900px; margin:0 auto; color:var(--text-light)">
     <h1>Risk Disclosure</h1>
-    <p>Last updated: May 26, 2025</p>
-    <h2>Futures Trading Risk</h2>
-    <p>Trading MNQ futures involves significant risks:</p>
+    <p><em>Last updated: May 26, 2025</em></p>
+
+    <h2>1. Nature of Futures Trading</h2>
+    <p>Micro E-Mini Nasdaq 100 (MNQ) futures are leveraged instruments. Leverage can amplify both gains and losses, potentially exceeding your initial margin deposit.</p>
+
+    <h2>2. Key Risks</h2>
     <ul>
-      <li><strong>Leverage:</strong> Small moves can wipe out capital.</li>
-      <li><strong>Margin Calls:</strong> You may need to deposit more funds.</li>
-      <li><strong>Slippage:</strong> Prices may differ in fast markets.</li>
-      <li><strong>Liquidity:</strong> Hard to exit in extreme volatility.</li>
+      <li><strong>Leverage Risk:</strong> Small adverse price movements can result in significant losses.</li>
+      <li><strong>Margin Calls:</strong> You may need to deposit additional funds on short notice.</li>
+      <li><strong>Slippage & Gapping:</strong> Volatile markets can cause trade executions at worse prices.</li>
+      <li><strong>Liquidity Risk:</strong> In extreme conditions, you may not be able to exit positions promptly.</li>
+      <li><strong>Counterparty Risk:</strong> Exchanges or clearinghouses may impose trading halts or restrictions.</li>
     </ul>
-    <h2>Backtest Limitations</h2>
-    <p>Past results (e.g. 541.47% annual) are not guarantees of future performance.</p>
-    <h2>User Responsibility</h2>
+
+    <h2>3. Backtest Limitations</h2>
+    <p>Historical simulations (e.g. 541.47% annualized returns) are based on past data and do not account for real-time slippage, commissions, or changing market structure. Past performance is not indicative of future results.</p>
+
+    <h2>4. User Responsibilities</h2>
     <ul>
-      <li>You set parameters, position size and manage risk.</li>
-      <li>You monitor open trades and margin requirements.</li>
+      <li>Setting appropriate position sizes and risk parameters.</li>
+      <li>Monitoring open trades and margin requirements continuously.</li>
+      <li>Ensuring your platform and internet connectivity remain stable.</li>
     </ul>
-    <h2>No Guarantees</h2>
-    <p>Veroxys does not guarantee profit—past performance ≠ future results.</p>
+
+    <h2>5. No Guarantee of Profit</h2>
+    <p>Veroxys makes no assurances of profitability. Trading carries inherent risks and you should only trade with capital you can afford to lose.</p>
+
+    <h2>6. Professional Advice</h2>
+    <p>This disclosure is for informational purposes and not financial advice. Consult qualified professionals before making trading decisions.</p>
   </main>
 
-  <footer>…copy footer…</footer>
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Service</a>
+        <a href="risk.html">Risk Disclosure</a>
+        <a href="support.html">Support</a>
+      </div>
+      <p>&copy; 2025 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
+    </div>
+  </footer>
+
   <script src="main.js"></script>
 </body>
 </html>
