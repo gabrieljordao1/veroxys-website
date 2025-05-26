@@ -2,11 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Veroxys – Advanced Trading Solutions</title>
   <link rel="stylesheet" href="styles.css" />
-  <!-- Load the Gradio WebComponent library -->
-  <script type="module" src="https://gradio.s3-us-west-2.amazonaws.com/3.43.0/gradio.js"></script> <!-- :contentReference[oaicite:0]{index=0} -->
 </head>
 <body>
   <!-- Particles Background -->
@@ -30,8 +28,30 @@
     </div>
   </nav>
 
-  <!-- Hero, Stats, Products, Features, About sections… (unchanged) -->
-  <!-- … -->
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <!-- …(unchanged hero content)… -->
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <!-- …(unchanged stats content)… -->
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <!-- …(unchanged products content)… -->
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <!-- …(unchanged features content)… -->
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <!-- …(unchanged about content)… -->
+  </section>
 
   <!-- Contact Section -->
   <section class="contact" id="contact" style="padding:5rem 5%; background:rgba(10,15,28,0.9); color:var(--text-light);">
@@ -50,7 +70,7 @@
     </form>
   </section>
 
-  <!-- Footer (unchanged) -->
+  <!-- Footer -->
   <footer>
     <div class="footer-content">
       <div class="footer-links">
@@ -65,50 +85,17 @@
 
   <script src="main.js"></script>
 
-  <!-- ================= AI CHAT WIDGET (Gradio WebComponent) ================= -->
-  <style>
-    #chat-button {
-      position: fixed;
-      bottom: 20px; right: 20px;
-      width: 50px; height: 50px;
-      background: var(--accent-blue);
-      color: white;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 24px; cursor: pointer; z-index: 10000;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      transition: background 0.3s;
-    }
-    #chat-button:hover { background: var(--primary-blue); }
+  <!-- ================= AI CHAT WIDGET (OpenWidget) ================= -->
+  <!-- 1) Sign up at OpenWidget, connect your OpenAI Assistant and go to “Add to website” → Chat Interface. -->
+  <!-- 2) Copy the generated <script>…</script> snippet and paste it below, replacing this placeholder. -->
+  <!-- Example placeholder: -->
+  <!--
+  <script
+    src="https://app.openwidget.com/js/chat-interface-for-open-ai-assistants.js"
+    data-api-key="YOUR_OPENAI_API_KEY"
+    data-assistant-id="YOUR_ASSISTANT_ID"
+  ></script>
+  -->
 
-    #gradio-chat {
-      display: none;
-      position: fixed; bottom: 80px; right: 20px;
-      width: 350px; height: 450px;
-      border: 2px solid var(--accent-blue);
-      border-radius: 8px; overflow: hidden;
-      z-index: 10000;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    }
-  </style>
-
-  <!-- Toggle Button -->
-  <div id="chat-button" title="Chat with AI">💬</div>
-
-  <!-- Gradio Chat Widget -->
-  <gradio-app
-    id="gradio-chat"
-    space="yuntian-deng/ChatGPT"
-    theme="light"
-  ></gradio-app> <!-- :contentReference[oaicite:1]{index=1} -->
-
-  <script>
-    const chatBtn = document.getElementById('chat-button');
-    const chatBox = document.getElementById('gradio-chat');
-    chatBtn.addEventListener('click', () => {
-      chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
-    });
-  </script>
-  <!-- =============== end AI CHAT WIDGET =============== -->
 </body>
 </html>
