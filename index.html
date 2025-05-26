@@ -1,654 +1,578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Veroxys - Advanced Trading Solutions</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --primary-blue: #1a3d5c; --accent-blue: #4a7ba7; --light-blue: #a8c7e0;
-            --dark-bg: #0a0f1c; --text-light: #e0e6ed; --text-muted: #8892b0;
-            --success: #22c55e; --warning: #f59e0b; --danger: #ef4444;
-        }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-            background-color: var(--dark-bg); color: var(--text-light);
-            overflow-x: hidden; line-height: 1.6;
-        }
-        html { scroll-behavior: smooth; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Veroxys - Advanced Trading Solutions</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary-blue: #1a3d5c;
+      --accent-blue: #4a7ba7;
+      --light-blue: #a8c7e0;
+      --dark-bg: #0a0f1c;
+      --text-light: #e0e6ed;
+      --text-muted: #8892b0;
+      --success: #22c55e;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-light);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+    html { scroll-behavior: smooth; }
 
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; padding: 1rem 5%;
-            background: rgba(10,15,28,0.9); backdrop-filter: blur(10px); z-index:1000;
-            transition: all 0.3s ease;
-        }
-        nav.scrolled { padding:0.5rem 5%; background:rgba(10,15,28,0.95); }
-        .nav-container { display:flex; justify-content:space-between; align-items:center;
-            max-width:1400px; margin:0 auto;
-        }
-        .logo { display:flex; align-items:center; gap:0.5rem;
-            font-size:1.5rem; font-weight:700; color:var(--text-light); text-decoration:none;
-        }
-        .logo-img { width:45px; height:45px; object-fit:contain;
-            animation:float 3s ease-in-out infinite;
-        }
-        @keyframes float {
-            0%,100%{transform:rotate(180deg) translateY(0);}
-            50%{transform:rotate(180deg) translateY(-5px);}
-        }
-        .nav-links { display:flex; gap:2rem; list-style:none; }
-        .nav-links a { color:var(--text-muted); text-decoration:none;
-            transition: color 0.3s ease; font-weight:500;
-        }
-        .nav-links a:hover { color:var(--text-light); }
-        .cta-button { background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
-            color:white; padding:0.5rem 1.5rem; border-radius:5px;
-            text-decoration:none; transition:all 0.3s ease; font-weight:600;
-        }
-        .cta-button:hover { transform:translateY(-2px);
-            box-shadow:0 10px 20px rgba(74,123,167,0.3);
-        }
+    /* Navigation */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 1rem 5%;
+      background: rgba(10,15,28,0.9); backdrop-filter: blur(10px);
+      z-index: 1000; transition: all 0.3s ease;
+    }
+    nav.scrolled {
+      padding: 0.5rem 5%; background: rgba(10,15,28,0.95);
+    }
+    .nav-container {
+      display: flex; justify-content: space-between; align-items: center;
+      max-width: 1400px; margin: 0 auto;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-size: 1.5rem; font-weight: 700; color: var(--text-light);
+      text-decoration: none;
+    }
+    .logo-img {
+      width: 45px; height: 45px; object-fit: contain;
+      animation: float 3s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: rotate(180deg) translateY(0); }
+      50%     { transform: rotate(180deg) translateY(-5px); }
+    }
+    .nav-links {
+      display: flex; gap: 2rem; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.3s ease; font-weight: 500;
+    }
+    .nav-links a:hover { color: var(--text-light); }
+    .cta-button {
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white; padding: 0.5rem 1.5rem; border-radius: 5px;
+      text-decoration: none; transition: all 0.3s ease; font-weight: 600;
+    }
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(74,123,167,0.3);
+    }
 
-        /* Hero */
-        .hero { min-height:100vh; display:flex; align-items:center; justify-content:center;
-            position:relative; padding:5rem 5%;
-            background:radial-gradient(ellipse at center,rgba(26,61,92,0.1) 0%,transparent 70%);
-        }
-        .hero-content { text-align:center; max-width:800px; z-index:2; }
-        .hero h1 {
-            font-size:clamp(2.5rem,5vw,4rem); margin-bottom:1rem;
-            background:linear-gradient(135deg,var(--text-light),var(--accent-blue));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-            animation:fadeInUp 1s ease;
-        }
-        .hero p {
-            font-size:1.25rem; color:var(--text-muted); margin-bottom:2rem;
-            animation:fadeInUp 1s ease 0.2s; animation-fill-mode:both;
-        }
-        @keyframes fadeInUp {
-            from { opacity:0; transform:translateY(30px); }
-            to   { opacity:1; transform:translateY(0); }
-        }
-        .cube-container { position:absolute; width:100%; height:100%;
-            top:0; left:0; perspective:1000px; pointer-events:none;
-        }
-        .cube { width:200px; height:200px; position:absolute;
-            top:50%; left:50%; transform-style:preserve-3d;
-            transform:translate(-50%,-50%) rotateX(25deg) rotateY(45deg);
-            animation:rotateCube 20s infinite linear;
-        }
-        @keyframes rotateCube {
-            from { transform:translate(-50%,-50%) rotateX(25deg) rotateY(45deg); }
-            to   { transform:translate(-50%,-50%) rotateX(25deg) rotateY(405deg); }
-        }
-        .cube-face {
-            position:absolute; width:200px; height:200px;
-            border:2px solid rgba(74,123,167,0.3);
-            background:rgba(26,61,92,0.1); backdrop-filter:blur(5px);
-        }
-        .cube-face:nth-child(1){transform:translateZ(100px);}
-        .cube-face:nth-child(2){transform:rotateY(90deg) translateZ(100px);}
-        .cube-face:nth-child(3){transform:rotateY(180deg) translateZ(100px);}
-        .cube-face:nth-child(4){transform:rotateY(270deg) translateZ(100px);}
-        .cube-face:nth-child(5){transform:rotateX(90deg) translateZ(100px);}
-        .cube-face:nth-child(6){transform:rotateX(-90deg) translateZ(100px);}
+    /* Hero */
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      position: relative; padding: 5rem 5%;
+      background: radial-gradient(ellipse at center, rgba(26,61,92,0.1) 0%, transparent 70%);
+    }
+    .hero-content { text-align: center; max-width: 800px; z-index: 2; }
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1rem;
+      background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      animation: fadeInUp 1s ease;
+    }
+    .hero p {
+      font-size: 1.25rem; color: var(--text-muted); margin-bottom: 2rem;
+      animation: fadeInUp 1s ease 0.2s; animation-fill-mode: both;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cube-container {
+      position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+      perspective: 1000px; pointer-events: none;
+    }
+    .cube {
+      width: 200px; height: 200px; position: absolute;
+      top: 50%; left: 50%;
+      transform-style: preserve-3d;
+      transform: translate(-50%, -50%) rotateX(25deg) rotateY(45deg);
+      animation: rotateCube 20s infinite linear;
+    }
+    @keyframes rotateCube {
+      from { transform: translate(-50%, -50%) rotateX(25deg) rotateY(45deg); }
+      to   { transform: translate(-50%, -50%) rotateX(25deg) rotateY(405deg); }
+    }
+    .cube-face {
+      position: absolute; width: 200px; height: 200px;
+      border: 2px solid rgba(74,123,167,0.3);
+      background: rgba(26,61,92,0.1); backdrop-filter: blur(5px);
+    }
+    .cube-face:nth-child(1) { transform: translateZ(100px); }
+    .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(100px); }
+    .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(100px); }
+    .cube-face:nth-child(4) { transform: rotateY(270deg) translateZ(100px); }
+    .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(100px); }
+    .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(100px); }
 
-        /* Stats */
-        .stats { padding:5rem 5%;
-            background:linear-gradient(180deg,transparent,rgba(26,61,92,0.1));
-        }
-        .stats-container { max-width:1200px; margin:0 auto;
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-            gap:2rem;
-        }
-        .stat-card { text-align:center; padding:2rem;
-            background:rgba(26,61,92,0.2); border-radius:10px;
-            backdrop-filter:blur(10px);
-            border:1px solid rgba(74,123,167,0.3);
-            transition:all 0.3s ease;
-        }
-        .stat-card:hover { transform:translateY(-5px);
-            border-color:var(--accent-blue);
-        }
-        .stat-number { font-size:2.5rem; font-weight:700;
-            color:var(--accent-blue); margin-bottom:0.5rem;
-        }
+    /* Stats */
+    .stats {
+      padding: 5rem 5%;
+      background: linear-gradient(180deg, transparent, rgba(26,61,92,0.1));
+    }
+    .stats-container {
+      max-width: 1200px; margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+      gap: 2rem;
+    }
+    .stat-card {
+      text-align: center; padding: 2rem;
+      background: rgba(26,61,92,0.2); border-radius: 10px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(74,123,167,0.3);
+      transition: all 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-blue);
+    }
+    .stat-number {
+      font-size: 2.5rem; font-weight: 700;
+      color: var(--accent-blue); margin-bottom: 0.5rem;
+    }
 
-        /* Products */
-        .products { padding:5rem 5%; max-width:1400px; margin:0 auto; }
-        .section-title { text-align:center; font-size:2.5rem; margin-bottom:3rem;
-            background:linear-gradient(135deg,var(--text-light),var(--accent-blue));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-        }
-        .products-grid { display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
-            gap:3rem; margin-top:4rem;
-        }
-        .product-card { background:rgba(26,61,92,0.1);
-            border:1px solid rgba(74,123,167,0.3);
-            border-radius:15px; padding:2.5rem; position:relative;
-            overflow:hidden; transition:all 0.3s ease;
-        }
-        .product-card::before {
-            content:''; position:absolute; top:0; left:0;
-            width:100%; height:100%;
-            background:linear-gradient(135deg,transparent,rgba(74,123,167,0.1));
-            transform:translateX(-100%); transition:transform 0.5s ease;
-        }
-        .product-card:hover::before { transform:translateX(0); }
-        .product-card:hover {
-            transform:translateY(-10px);
-            border-color:var(--accent-blue);
-            box-shadow:0 20px 40px rgba(74,123,167,0.2);
-        }
-        .product-header { display:flex; justify-content:space-between;
-            align-items:center; margin-bottom:1.5rem;
-        }
-        .product-name { font-size:1.5rem; font-weight:700; color:var(--text-light); }
-        .product-badge {
-            padding:0.25rem 0.75rem; border-radius:20px;
-            font-size:0.875rem; font-weight:600;
-        }
-        .badge-high-risk { background:rgba(239,68,68,0.2);
-            color:var(--danger); border:1px solid var(--danger);
-        }
-        .badge-moderate { background:rgba(245,158,11,0.2);
-            color:var(--warning); border:1px solid var(--warning);
-        }
-        .badge-conservative { background:rgba(34,197,94,0.2);
-            color:var(--success); border:1px solid var(--success);
-        }
-        .product-stats { display:grid; grid-template-columns:1fr 1fr;
-            gap:1rem; margin:1.5rem 0;
-        }
-        .stat-item { padding:1rem; background:rgba(10,15,28,0.5);
-            border-radius:8px; text-align:center;
-        }
-        .stat-label { font-size:0.875rem; color:var(--text-muted);
-            margin-bottom:0.25rem;
-        }
-        .stat-value { font-size:1.25rem; font-weight:700;
-            color:var(--accent-blue);
-        }
-        .product-description { color:var(--text-muted);
-            margin-bottom:1.5rem; line-height:1.6;
-        }
-        .product-cta { display:block; width:100%; padding:0.75rem;
-            background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
-            color:white; text-align:center; text-decoration:none;
-            border-radius:8px; font-weight:600; transition:all 0.3s ease;
-        }
-        .product-cta:hover { transform:translateY(-2px);
-            box-shadow:0 10px 20px rgba(74,123,167,0.3);
-        }
+    /* Products */
+    .products {
+      padding: 5rem 5%; max-width: 1400px; margin: 0 auto;
+    }
+    .section-title {
+      text-align: center; font-size: 2.5rem; margin-bottom: 3rem;
+      background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px,1fr));
+      gap: 3rem; margin-top: 4rem;
+    }
+    .product-card {
+      background: rgba(26,61,92,0.1); border: 1px solid rgba(74,123,167,0.3);
+      border-radius: 15px; padding: 2.5rem; position: relative;
+      overflow: hidden; transition: all 0.3s ease;
+    }
+    .product-card::before {
+      content: ''; position: absolute; top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, transparent, rgba(74,123,167,0.1));
+      transform: translateX(-100%); transition: transform 0.5s ease;
+    }
+    .product-card:hover::before {
+      transform: translateX(0);
+    }
+    .product-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-blue);
+      box-shadow: 0 20px 40px rgba(74,123,167,0.2);
+    }
+    .product-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .product-name {
+      font-size: 1.5rem; font-weight: 700; color: var(--text-light);
+    }
+    .product-badge {
+      padding: 0.25rem 0.75rem; border-radius: 20px;
+      font-size: 0.875rem; font-weight: 600;
+    }
+    .badge-high-risk {
+      background: rgba(239,68,68,0.2); color: var(--danger);
+      border: 1px solid var(--danger);
+    }
+    .badge-moderate {
+      background: rgba(245,158,11,0.2); color: var(--warning);
+      border: 1px solid var(--warning);
+    }
+    .badge-conservative {
+      background: rgba(34,197,94,0.2); color: var(--success);
+      border: 1px solid var(--success);
+    }
+    .product-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .stat-item {
+      padding: 1rem; background: rgba(10,15,28,0.5);
+      border-radius: 8px; text-align: center;
+    }
+    .stat-label {
+      font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.25rem;
+    }
+    .stat-value {
+      font-size: 1.25rem; font-weight: 700; color: var(--accent-blue);
+    }
+    .product-description {
+      color: var(--text-muted); margin-bottom: 1.5rem; line-height: 1.6;
+    }
+    .product-cta {
+      display: block; width: 100%; padding: 0.75rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white; text-align: center; text-decoration: none;
+      border-radius: 8px; font-weight: 600; transition: all 0.3s ease;
+    }
+    .product-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(74,123,167,0.3);
+    }
 
-        /* Features */
-        .features { padding:5rem 5%;
-            background:linear-gradient(180deg,rgba(26,61,92,0.1),transparent);
-        }
-        .features-grid { max-width:1200px; margin:0 auto;
-            display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-            gap:3rem; margin-top:3rem;
-        }
-        .feature-card { text-align:center; padding:2rem; }
-        .feature-icon { width:80px; height:80px; margin:0 auto 1.5rem;
-            background:linear-gradient(135deg,var(--accent-blue),var(--primary-blue));
-            border-radius:50%; display:flex; align-items:center; justify-content:center;
-            font-size:2rem; color:white; animation:pulse 2s ease-in-out infinite;
-        }
-        @keyframes pulse {
-            0%,100%{transform:scale(1);} 50%{transform:scale(1.05);}
-        }
-        .feature-title { font-size:1.25rem; margin-bottom:1rem;
-            color:var(--text-light);
-        }
-        .feature-description { color:var(--text-muted); line-height:1.6; }
+    /* Product Detail Panel */
+    .product-detail {
+      display: none; margin-top: 1rem; padding: 1rem;
+      background: rgba(26,61,92,0.2); border: 1px solid var(--accent-blue);
+      border-radius: 8px; color: var(--text-light);
+    }
+    .product-detail h5 {
+      margin-bottom: 0.5rem; color: var(--accent-blue);
+    }
+    .product-detail p {
+      margin: 0.5rem 0; line-height: 1.5;
+    }
+    .product-detail .buy-button {
+      display: inline-block; margin-top: 1rem; padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      color: white; text-decoration: none; border-radius: 5px;
+      font-weight: 600;
+    }
+    .product-detail .buy-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(74,123,167,0.3);
+    }
 
-        /* About */
-        .about { padding:5rem 5%; background:rgba(10,15,28,0.9);
-            color:var(--text-light);
-        }
-        .about h2 {
-            text-align:center; font-size:2.5rem; margin-bottom:2rem;
-            background:linear-gradient(135deg,var(--text-light),var(--accent-blue));
-            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
-        }
-        .about-content { max-width:900px; margin:0 auto; line-height:1.6; }
-        .about-content h3 { font-size:2rem; margin-bottom:1rem; color:var(--accent-blue); }
-        .about-content h4 {
-            margin-top:1.5rem; font-size:1.25rem; color:var(--text-light);
-        }
-        .about-content p { margin:0.5rem 0; }
-        .about-content table {
-            width:100%; border-collapse:collapse; margin:1rem 0;
-        }
-        .about-content th, .about-content td {
-            border:1px solid rgba(74,123,167,0.3); padding:0.75rem; text-align:left;
-        }
-        .about-content th { background:rgba(74,123,167,0.2); }
-        .ea-subsection {
-            margin-top:2rem; padding-left:1rem;
-            border-left:3px solid var(--accent-blue);
-        }
-        .ea-subsection h4 { margin-bottom:0.5rem; }
-        .ea-subsection p { margin-bottom:0.5rem; }
+    /* Features */
+    .features {
+      padding: 5rem 5%;
+      background: linear-gradient(180deg, rgba(26,61,92,0.1), transparent);
+    }
+    .features-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+      gap: 3rem; margin-top: 3rem;
+    }
+    .feature-card { text-align: center; padding: 2rem; }
+    .feature-icon {
+      width: 80px; height: 80px; margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: white; animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); } 50% { transform: scale(1.05); }
+    }
+    .feature-title { font-size: 1.25rem; margin-bottom: 1rem; color: var(--text-light); }
+    .feature-description { color: var(--text-muted); line-height: 1.6; }
 
-        /* Footer */
-        footer { padding:3rem 5%; background:rgba(10,15,28,0.8);
-            text-align:center; border-top:1px solid rgba(74,123,167,0.3);
-        }
-        .footer-content { max-width:1200px; margin:0 auto; }
-        .footer-links { display:flex; justify-content:center; gap:2rem; margin-bottom:2rem; }
-        .footer-links a {
-            color:var(--text-muted); text-decoration:none;
-            transition:color 0.3s ease;
-        }
-        .footer-links a:hover { color:var(--text-light); }
+    /* About */
+    .about {
+      padding: 5rem 5%; background: rgba(10,15,28,0.9); color: var(--text-light);
+    }
+    .about h2 {
+      text-align: center; font-size: 2.5rem; margin-bottom: 2rem;
+      background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .about-content {
+      max-width: 900px; margin: 0 auto; line-height: 1.6;
+    }
+    .about-content h3 {
+      font-size: 2rem; margin-bottom: 1rem; color: var(--accent-blue);
+    }
+    .about-content h4 {
+      margin-top: 1.5rem; font-size: 1.25rem; color: var(--text-light);
+    }
+    .about-content p { margin: 0.5rem 0; }
+    .about-content table {
+      width: 100%; border-collapse: collapse; margin: 1rem 0;
+    }
+    .about-content th, .about-content td {
+      border: 1px solid rgba(74,123,167,0.3); padding: 0.75rem; text-align: left;
+    }
+    .about-content th { background: rgba(74,123,167,0.2); }
+    .ea-subsection {
+      margin-top: 2rem; padding-left: 1rem; border-left: 3px solid var(--accent-blue);
+    }
+    .ea-subsection h4 { margin-bottom: 0.5rem; }
+    .ea-subsection p { margin-bottom: 0.5rem; }
 
-        /* Responsive & Particles */
-        @media (max-width:768px){
-            .nav-links { display:none; }
-            .hero h1 { font-size:2rem; }
-            .products-grid { grid-template-columns:1fr; gap:2rem; }
-            .cube, .cube-face { width:150px; height:150px; }
-            .cube-face:nth-child(1){transform:translateZ(75px);}
-            .cube-face:nth-child(2){transform:rotateY(90deg) translateZ(75px);}
-            .cube-face:nth-child(3){transform:rotateY(180deg) translateZ(75px);}
-            .cube-face:nth-child(4){transform:rotateY(270deg) translateZ(75px);}
-            .cube-face:nth-child(5){transform:rotateX(90deg) translateZ(75px);}
-            .cube-face:nth-child(6){transform:rotateX(-90deg) translateZ(75px);}
-        }
-        .particles { position:fixed; top:0; left:0; width:100%; height:100%;
-            pointer-events:none; overflow:hidden;
-        }
-        .particle {
-            position:absolute; width:2px; height:2px; background:var(--accent-blue);
-            border-radius:50%; animation:drift 20s infinite linear;
-        }
-        @keyframes drift {
-            from { transform:translateY(100vh) translateX(0); }
-            to   { transform:translateY(-100px) translateX(100px); }
-        }
-    </style>
+    /* Footer */
+    footer {
+      padding: 3rem 5%; background: rgba(10,15,28,0.8);
+      text-align: center; border-top: 1px solid rgba(74,123,167,0.3);
+    }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-links {
+      display: flex; justify-content: center; gap: 2rem; margin-bottom: 2rem;
+    }
+    .footer-links a {
+      color: var(--text-muted); text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    .footer-links a:hover { color: var(--text-light); }
+
+    /* Responsive & Particles */
+    @media (max-width:768px) {
+      .nav-links { display: none; }
+      .hero h1 { font-size: 2rem; }
+      .products-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .cube, .cube-face { width: 150px; height: 150px; }
+      .cube-face:nth-child(1) { transform: translateZ(75px); }
+      .cube-face:nth-child(2) { transform: rotateY(90deg) translateZ(75px); }
+      .cube-face:nth-child(3) { transform: rotateY(180deg) translateZ(75px); }
+      .cube-face:nth-child(4) { transform: rotateY(270deg) translateZ(75px); }
+      .cube-face:nth-child(5) { transform: rotateX(90deg) translateZ(75px); }
+      .cube-face:nth-child(6) { transform: rotateX(-90deg) translateZ(75px); }
+    }
+    .particles {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none; overflow: hidden;
+    }
+    .particle {
+      position: absolute; width: 2px; height: 2px; background: var(--accent-blue);
+      border-radius: 50%; animation: drift 20s infinite linear;
+    }
+    @keyframes drift {
+      from { transform: translateY(100vh) translateX(0); }
+      to   { transform: translateY(-100px) translateX(100px); }
+    }
+  </style>
 </head>
 <body>
-    <!-- Particles -->
-    <div class="particles" id="particles"></div>
+  <!-- Particles -->
+  <div class="particles" id="particles"></div>
 
-    <!-- Navigation -->
-    <nav id="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="veroxys-logo.png" alt="Veroxys" class="logo-img"> VEROXYS
-            </a>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#products">Products</a></li>
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-            <a href="#products" class="cta-button">Get Started</a>
+  <!-- Navigation -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img"> VEROXYS
+      </a>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a href="#products" class="cta-button">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="cube-container">
+      <div class="cube">
+        <div class="cube-face"></div><div class="cube-face"></div>
+        <div class="cube-face"></div><div class="cube-face"></div>
+        <div class="cube-face"></div><div class="cube-face"></div>
+      </div>
+    </div>
+    <div class="hero-content">
+      <h1>Advanced Trading Solutions</h1>
+      <p>Harness the power of algorithmic trading with our sophisticated Expert Advisors designed for futures markets</p>
+      <a href="#products" class="cta-button">Explore Our EAs</a>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats">
+    <div class="stats-container">
+      <div class="stat-card">
+        <div class="stat-number">$1.15M+</div>
+        <div>Total Profits Generated</div>  
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">1,940%</div>
+        <div>Maximum Returns</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div>Specialized Strategies</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">24/7</div>
+        <div>Automated Trading</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products" id="products">
+    <h2 class="section-title">Our Expert Advisors</h2>
+    <div class="products-grid">
+
+      <!-- Ultra-Aggressive EA -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name">High-Return EA</h3>
+          <span class="product-badge badge-high-risk">High Risk</span>
         </div>
-    </nav>
-
-    <!-- Hero -->
-    <section class="hero" id="home">
-        <div class="cube-container">
-            <div class="cube">
-                <div class="cube-face"></div><div class="cube-face"></div>
-                <div class="cube-face"></div><div class="cube-face"></div>
-                <div class="cube-face"></div><div class="cube-face"></div>
-            </div>
+        <div class="product-stats">
+          <div class="stat-item">
+            <div class="stat-label">Total Profit</div>
+            <div class="stat-value">$1,158,559</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Annual Return</div>
+            <div class="stat-value">485.15%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Monthly Return</div>
+            <div class="stat-value">40.43%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Return</div>
+            <div class="stat-value">1,940.61%</div>
+          </div>
         </div>
-        <div class="hero-content">
-            <h1>Advanced Trading Solutions</h1>
-            <p>Harness the power of algorithmic trading with our sophisticated Expert Advisors designed for futures markets</p>
-            <a href="#products" class="cta-button">Explore Our EAs</a>
-        </div>
-    </section>
-
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stats-container">
-            <div class="stat-card">
-                <div class="stat-number">$1.15M+</div><div>Total Profits Generated</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">1,940%</div><div>Maximum Returns</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">3</div><div>Specialized Strategies</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">24/7</div><div>Automated Trading</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Products -->
-    <section class="products" id="products">
-        <h2 class="section-title">Our Expert Advisors</h2>
-        <div class="products-grid">
-            <!-- Ultra-Aggressive -->
-            <div class="product-card">
-                <div class="product-header">
-                    <h3 class="product-name">High-Return EA</h3>
-                    <span class="product-badge badge-high-risk">High Risk</span>
-                </div>
-                <div class="product-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Total Profit</div>
-                        <div class="stat-value">$1,158,559</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Annual Return</div>
-                        <div class="stat-value">485.15%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Monthly Return</div>
-                        <div class="stat-value">40.43%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Total Return</div>
-                        <div class="stat-value">1,940.61%</div>
-                    </div>
-                </div>
-                <p class="product-description">
-                    Designed for risk-tolerant traders seeking maximum returns. This EA utilizes aggressive breakout & scalp strategies with optimized money management to capture large moves.
-                </p>
-                <a href="#" class="product-cta">Learn More</a>
-            </div>
-
-            <!-- Balanced -->
-            <div class="product-card">
-                <div class="product-header">
-                    <h3 class="product-name">Moderate-Risk EA</h3>
-                    <span class="product-badge badge-moderate">Balanced</span>
-                </div>
-                <div class="product-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Total Profit</div>
-                        <div class="stat-value">$81,025</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Annual Return</div>
-                        <div class="stat-value">135.37%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Monthly Return</div>
-                        <div class="stat-value">11.28%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Total Return</div>
-                        <div class="stat-value">541.47%</div>
-                    </div>
-                </div>
-                <p class="product-description">
-                    Perfect for retail traders seeking consistent growth with controlled risk. Uses Smart Money Concepts (BoS + FVG entries, 4:1 R:R) and liquidity-hunt detection.
-                </p>
-                <a href="#" class="product-cta">Learn More</a>
-            </div>
-
-            <!-- Conservative -->
-            <div class="product-card">
-                <div class="product-header">
-                    <h3 class="product-name">Conservative EA</h3>
-                    <span class="product-badge badge-conservative">Low Risk</span>
-                </div>
-                <div class="product-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">Total Profit</div>
-                        <div class="stat-value">$233,695</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Annual Return</div>
-                        <div class="stat-value">26.30%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Monthly Return</div>
-                        <div class="stat-value">2.19%</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">Total Return</div>
-                        <div class="stat-value">105.20%</div>
-                    </div>
-                </div>
-                <p class="product-description">
-                    Ideal for risk-averse traders and prop firms. Employs EMA crossover trend-following (9/21 EMA) with ATR-based stops and a conservative 1.5:1 R:R.
-                </p>
-                <a href="#" class="product-cta">Learn More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features -->
-    <section class="features" id="features">
-        <h2 class="section-title">Why Choose Veroxys</h2>
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon">📊</div>
-                <h3 class="feature-title">Advanced Analytics</h3>
-                <p class="feature-description">Real-time market analysis with adaptive algorithms.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🔒</div>
-                <h3 class="feature-title">Risk Management</h3>
-                <p class="feature-description">Built-in controls & position sizing to protect capital.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3 class="feature-title">Lightning Fast</h3>
-                <p class="feature-description">Execute trades in milliseconds with low-latency connectivity.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🎯</div>
-                <h3 class="feature-title">Precision Trading</h3>
-                <p class="feature-description">Pinpoint entries/exits with proprietary indicators.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">📈</div>
-                <h3 class="feature-title">Proven Results</h3>
-                <p class="feature-description">Consistent performance across markets & timeframes.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3 class="feature-title">24/7 Support</h3>
-                <p class="feature-description">Expert help whenever you need it.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- About (Full License & EA Details) -->
-    <section class="about" id="about">
-      <h2>About Veroxys EAs</h2>
-      <div class="about-content">
-        <h3>License Agreement & Disclosures</h3>
-
-        <h4>1. Parties</h4>
-        <p>This License Agreement (“Agreement”) is between <strong>Veroxys LLC</strong> (“Licensor”), with its principal place of business at [Address], and you, the individual or entity that purchases, downloads, or uses the Veroxys Expert Advisor software (“Licensee”).</p>
-
-        <h4>2. Definitions</h4>
-        <p><strong>“EA”</strong> means the Veroxys Expert Advisor software (including all modules, updates, and Documentation) provided under this Agreement.<br>
-        <strong>“License Key”</strong> means the unique code issued to Licensee to activate the EA.<br>
-        <strong>“Documentation”</strong> means user manuals, installation guides, FAQs and other materials provided by Licensor.</p>
-
-        <h4>3. Grant of License</h4>
-        <p>Subject to payment of all fees and compliance with this Agreement, Licensor grants Licensee a <strong>non-exclusive, non-transferable, revocable</strong> license to install and run one copy of the EA on up to [X] trading accounts owned or controlled by Licensee. Delivery occurs via licensedownload.veroxys.com upon successful payment.</p>
-
-        <h4>4. Restrictions</h4>
-        <p>Licensee may <strong>not</strong> reverse-engineer, decompile, or disassemble the EA; distribute, sublicense, rent, or lease the EA or License Key; use the EA for illegal trading; share the License Key with third parties; or install on accounts not owned by Licensee.</p>
-
-        <h4>5. Fees & Payment</h4>
-        <p>All sales are final; no refunds will be issued under any circumstances.</p>
-        <table>
-          <thead>
-            <tr>
-              <th>EA Tier</th>
-              <th>One-Time License Fee</th>
-              <th>Monthly Subscription</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Conservative EA</td>
-              <td>$499</td>
-              <td>$49 / mo</td>
-            </tr>
-            <tr>
-              <td>Balanced (Core) EA</td>
-              <td>$999</td>
-              <td>$99 / mo</td>
-            </tr>
-            <tr>
-              <td>Ultra-Aggressive EA</td>
-              <td>$1,499</td>
-              <td>$149 / mo</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h4>6. Risk Disclosure & Disclaimers</h4>
-        <p>Past backtest or live-trading results (including up to 541.47% annualized returns) are <strong>not</strong> indicative of future performance. Trading Micro E-Mini Nasdaq 100 (MNQ) futures involves substantial risk, including slippage, margin calls, and total loss of capital. Licensee is solely responsible for parameters, sizing, and risk management.</p>
-
-        <h4>7. Updates & Support</h4>
-        <p>Minor updates (bug fixes, compatibility) are provided free; major releases may incur upgrade fees. Support: support@veroxys.com, Monday–Friday 9 am–5 pm ET; response time up to 2 business days.</p>
-
-        <h4>8. Intellectual Property</h4>
-        <p>All rights, title and interest in the EA, Documentation and trademarks are owned by Veroxys LLC. Licensee acquires no ownership or copyright interest.</p>
-
-        <h4>9. Warranty Disclaimer</h4>
-        <p>The EA is provided “as-is” and “as-available” without warranty of any kind, including merchantability or fitness for a particular purpose. Licensor does not warrant uninterrupted or error-free performance.</p>
-
-        <h4>10. Limitation of Liability</h4>
-        <p>To the maximum extent permitted by law, Licensor is not liable for indirect, special, or consequential damages (including lost profits or trading opportunities). Licensor’s aggregate liability shall not exceed the amount paid by Licensee in the prior 12 months.</p>
-
-        <h4>11. Indemnification</h4>
-        <p>Licensee agrees to indemnify, defend, and hold harmless Licensor and its officers, directors, and employees from all claims or damages arising from Licensee’s use or breach of this Agreement.</p>
-
-        <h4>12. Term & Termination</h4>
-        <p>This Agreement remains in force until terminated. Licensor may terminate immediately upon breach. Upon termination, Licensee must uninstall and delete all copies of the EA and cease use of the License Key.</p>
-
-        <h4>13. Governing Law & Dispute Resolution</h4>
-        <p>This Agreement is governed by the laws of the State of [State], USA. Any disputes shall be resolved exclusively in the federal or state courts located in [County, State].</p>
-
-        <h4>14. Miscellaneous</h4>
-        <p>This document constitutes the entire agreement. Licensor may amend these terms at veroxys.com/terms. If any provision is invalid, the remainder shall continue in full force.</p>
-
-        <h4>15. Acceptance</h4>
-        <p>By purchasing, downloading, or using the Veroxys EA, Licensee acknowledges that they have read, understood, and agree to be bound by this Agreement.</p>
-
-        <!-- Individual EA Details -->
-        <div class="ea-subsection" id="about-conservative">
-          <h4>Conservative EA</h4>
-          <p><strong>How It Trades:</strong> EMA crossover trend-following (9/21 EMA), ATR-based stops & targets, 1.5:1 R:R.</p>
-          <p><strong>Risk:</strong> Low drawdown (<5%), conservative position sizing.</p>
-          <p><strong>Pricing:</strong> $499 one-time or $49/mo subscription.</p>
-          <a href="purchase.html?ea=conservative" class="product-cta">Buy Now</a>
-        </div>
-
-        <div class="ea-subsection" id="about-balanced">
-          <h4>Balanced (Core) EA</h4>
-          <p><strong>How It Trades:</strong> Smart Money Concepts: Break of Structure + Fair Value Gap entries, 4:1 R:R, liquidity grab detection.</p>
-          <p><strong>Risk:</strong> Moderate drawdown (~10%), balanced money management.</p>
-          <p><strong>Pricing:</strong> $999 one-time or $99/mo subscription.</p>
-          <a href="purchase.html?ea=balanced" class="product-cta">Buy Now</a>
-        </div>
-
-        <div class="ea-subsection" id="about-ultra">
-          <h4>Ultra-Aggressive EA</h4>
-          <p><strong>How It Trades:</strong> Breakout & scalp strategies on MNQ, high leverage, ATR-based dynamic trailing stops.</p>
-          <p><strong>Risk:</strong> High volatility, potential large drawdowns; suitable only for experienced traders.</p>
-          <p><strong>Pricing:</strong> $1,499 one-time or $149/mo subscription.</p>
-          <a href="purchase.html?ea=ultra" class="product-cta">Buy Now</a>
+        <p class="product-description">
+          Designed for risk-tolerant traders seeking maximum returns in volatile markets.
+        </p>
+        <a href="#" class="product-cta">Learn More</a>
+        <div class="product-detail">
+          <h5>How It Trades</h5>
+          <p>Breakout & scalp strategies on MNQ futures using ATR-based dynamic trailing stops, high leverage and optimized money management.</p>
+          <h5>Backtest Highlights</h5>
+          <p>Total Profit: $1,158,559<br>
+             Annualized Return: 485.15%<br>
+             Monthly Avg: 40.43%<br>
+             Total Return (4 years): 1,940.61%</p>
+          <h5>Risk Profile</h5>
+          <p>Very high volatility. Expect large drawdowns—suited only for experienced traders.</p>
+          <h5>Pricing</h5>
+          <p>One-time: $1,499 | Subscription: $149/month</p>
+          <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
         </div>
       </div>
-    </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Service</a>
-                <a href="#">Risk Disclaimer</a>
-                <a href="#">Support</a>
-            </div>
-            <p>&copy; 2024 Veroxys. All rights reserved. Trading futures involves risk of loss.</p>
+      <!-- Balanced (Core) EA -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name">Moderate-Risk EA</h3>
+          <span class="product-badge badge-moderate">Balanced</span>
         </div>
-    </footer>
+        <div class="product-stats">
+          <div class="stat-item">
+            <div class="stat-label">Total Profit</div>
+            <div class="stat-value">$81,025</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Annual Return</div>
+            <div class="stat-value">135.37%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Monthly Return</div>
+            <div class="stat-value">11.28%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Return</div>
+            <div class="stat-value">541.47%</div>
+          </div>
+        </div>
+        <p class="product-description">
+          Steady growth with Smart Money Concepts and controlled risk.
+        </p>
+        <a href="#" class="product-cta">Learn More</a>
+        <div class="product-detail">
+          <h5>How It Trades</h5>
+          <p>Smart-Money Concepts: Break of Structure + Fair Value Gap entries, 4:1 R:R, liquidity-hunt detection on 15-min MNQ charts.</p>
+          <h5>Backtest Highlights</h5>
+          <p>Total Profit: $81,025<br>
+             Annualized Return: 135.37%<br>
+             Monthly Avg: 11.28%<br>
+             Total Return (4 years): 541.47%</p>
+          <h5>Risk Profile</h5>
+          <p>Moderate drawdowns (~10%), balanced position sizing.</p>
+          <h5>Pricing</h5>
+          <p>One-time: $999 | Subscription: $99/month</p>
+          <a href="purchase.html?ea=balanced" class="buy-button">Buy Now</a>
+        </div>
+      </div>
 
-    <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
-        });
+      <!-- Conservative EA -->
+      <div class="product-card">
+        <div class="product-header">
+          <h3 class="product-name">Conservative EA</h3>
+          <span class="product-badge badge-conservative">Low Risk</span>
+        </div>
+        <div class="product-stats">
+          <div class="stat-item">
+            <div class="stat-label">Total Profit</div>
+            <div class="stat-value">$233,695</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Annual Return</div>
+            <div class="stat-value">26.30%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Monthly Return</div>
+            <div class="stat-value">2.19%</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-label">Total Return</div>
+            <div class="stat-value">105.20%</div>
+          </div>
+        </div>
+        <p class="product-description">
+          Capital-preserving trend-following with strict risk controls.
+        </p>
+        <a href="#" class="product-cta">Learn More</a>
+        <div class="product-detail">
+          <h5>How It Trades</h5>
+          <p>EMA crossover (9/21) trend-following with ATR-based stops and a conservative 1.5:1 R:R on 15-min charts.</p>
+          <h5>Backtest Highlights</h5>
+          <p>Total Profit: $233,695<br>
+             Annualized Return: 26.30%<br>
+             Monthly Avg: 2.19%<br>
+             Total Return (4 years): 105.20%</p>
+          <h5>Risk Profile</h5>
+          <p>Low drawdowns (<5%), conservative sizing—ideal for prop firms and risk-averse traders.</p>
+          <h5>Pricing</h5>
+          <p>One-time: $499 | Subscription: $49/month</p>
+          <a href="purchase.html?ea=conservative" class="buy-button">Buy Now</a>
+        </div>
+      </div>
 
-        // Smooth scroll anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const tgt = document.querySelector(this.getAttribute('href'));
-                if (tgt) tgt.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            });
-        });
+    </div>
+  </section>
 
-        // Create particles
-        function createParticles() {
-            const container = document.getElementById('particles');
-            for (let i = 0; i < 50; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                p.style.left = Math.random()*100 + '%';
-                p.style.animationDelay = Math.random()*20 + 's';
-                p.style.opacity = Math.random()*0.5 + 0.1;
-                container.appendChild(p);
-            }
-        }
-        createParticles();
-
-        // Fade-in observer
-        const obs = new IntersectionObserver((entries) => {
-            entries.forEach(en => {
-                if (en.isIntersecting) {
-                    en.target.style.opacity = '1';
-                    en.target.style.transform = 'translateY(0)';
-                    obs.unobserve(en.target);
-                }
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.product-card, .feature-card, .stat-card').forEach(el => {
-            el.style.opacity='0'; el.style.transform='translateY(30px)';
-            el.style.transition='all 0.6s ease';
-            obs.observe(el);
-        });
-
-        // Animate stats numbers
-        function animateNumbers() {
-            document.querySelectorAll('.stat-number').forEach(num => {
-                const txt = num.textContent;
-                const isPerc = txt.includes('%');
-                const isCurr = txt.includes('$');
-                let val = parseFloat(txt.replace(/[^0-9.-]/g,'')) 
-                          * (isCurr&&txt.includes('M')?1e6:1);
-                let cur=0, step=val/100;
-                const t = setInterval(()=>{
-                    cur+=step;
-                    if(cur>=val){ cur=val; clearInterval(t); }
-                    let disp = isCurr
-                        ? (cur>=1e6 ? '$'+(cur/1e6).toFixed(2)+'M' : '$'+Math.floor(cur).toLocaleString())
-                        : isPerc ? cur.toFixed(0)+'%' : Math.floor(cur);
-                    if(isCurr&&txt.includes('+')) disp+='+';
-                    num.textContent = disp;
-                },20);
-            });
-        }
-        const statSect = document.querySelector('.stats');
-        new IntersectionObserver((e)=>{
-            if(e[0].isIntersecting){ animateNumbers(); }
-        },{threshold:0.5}).observe(statSect);
-    </script>
-</body>
-</html>
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <h2 class="section-title">Why Choose Veroxys</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3 class="feature-title">Advanced Analytics</h3>
+        <p class="feature-description">Real-time market analysis with adaptive algorithms.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3 class="feature-title">Risk Management</h3>
+        <p class="feature-description">Built-in controls & position sizing to protect capital.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3 class="feature-title">Lightning Fast</h3>
+        <p class="feature-description">Execute trades in milliseconds with low-latency connectivity.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3 class="feature-title">Precision Trading</h3>
+        <p class="feature-description">Pinpoint entries/exits with proprietary indicators.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📈</div>
+        <h3 class="feature-title">Proven Results</h3>
+        <p class="feature-description">Consistent performance across markets & timeframes.</p>
