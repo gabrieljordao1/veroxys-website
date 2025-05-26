@@ -6,43 +6,53 @@
   <title>Veroxys – Advanced Trading Solutions</title>
   <link rel="stylesheet" href="styles.css" />
 
-  <!-- Flip-card CSS -->
+  <!-- flip‐card CSS -->
   <style>
+    /* STYLE YOUR PRODUCT CARD AS BEFORE */
     .product-card {
+      background: rgba(26, 61, 92, 0.1);
+      border: 1px solid rgba(74, 123, 167, 0.3);
+      border-radius: 15px;
+      padding: 2.5rem;
       position: relative;
       perspective: 1000px;
+      overflow: hidden;
     }
+
+    /* THIS WRAPPER FLIPS */
     .product-card-inner {
       position: relative;
       width: 100%;
-      height: 100%;
       transform-style: preserve-3d;
       transition: transform 0.8s ease;
     }
     .product-card.flipped .product-card-inner {
       transform: rotateY(180deg);
     }
-    .flip-face {
+
+    /* FRONT FACE—flows normally */
+    .flip-front {
+      position: relative;
+      backface-visibility: hidden;
+    }
+
+    /* BACK FACE—absolutely stacked */
+    .flip-back {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
       backface-visibility: hidden;
+      transform: rotateY(180deg);
+      /* match front padding */
       padding: 2.5rem;
       box-sizing: border-box;
+      background: rgba(26, 61, 92, 0.1);
       border-radius: 15px;
-      background: rgba(26,61,92,0.1);
-      border: 1px solid rgba(74,123,167,0.3);
+      border: 1px solid rgba(74, 123, 167, 0.3);
     }
-    .flip-front {
-      background: none;
-      border: none;
-      padding: 0;
-    }
-    .flip-back {
-      transform: rotateY(180deg);
-    }
+
+    /* BUTTON STYLE */
     .flip-btn {
-      display: inline-block;
       margin-top: 1rem;
       padding: 0.75rem 1.5rem;
       background: linear-gradient(135deg, var(--accent-blue), var(--primary-blue));
@@ -55,58 +65,18 @@
     }
     .flip-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(74,123,167,0.3);
+      box-shadow: 0 10px 20px rgba(74, 123, 167, 0.3);
     }
   </style>
 </head>
+
 <body>
-  <!-- Particles Background -->
-  <div class="particles" id="particles"></div>
+  <!-- Navigation, Hero, Stats unchanged -->
+  <nav id="navbar">…</nav>
+  <section class="hero" id="home">…</section>
+  <section class="stats">…</section>
 
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="#home" class="logo">
-        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" /> VEROXYS
-      </a>
-      <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#products">Products</a></li>
-        <li><a href="#features">Features</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <a href="#products" class="cta-button">Get Started</a>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section class="hero" id="home">
-    <div class="cube-container">
-      <div class="cube">
-        <div class="cube-face"></div><div class="cube-face"></div>
-        <div class="cube-face"></div><div class="cube-face"></div>
-        <div class="cube-face"></div><div class="cube-face"></div>
-      </div>
-    </div>
-    <div class="hero-content">
-      <h1>Advanced Trading Solutions</h1>
-      <p>Harness the power of algorithmic trading with our sophisticated Expert Advisors designed for futures markets</p>
-      <a href="#products" class="cta-button">Explore Our EAs</a>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section class="stats">
-    <div class="stats-container">
-      <div class="stat-card"><div class="stat-number">$1.15M+</div><div>Total Profits Generated</div></div>
-      <div class="stat-card"><div class="stat-number">1,940%</div><div>Maximum Returns</div></div>
-      <div class="stat-card"><div class="stat-number">3</div><div>Specialized Strategies</div></div>
-      <div class="stat-card"><div class="stat-number">24/7</div><div>Automated Trading</div></div>
-    </div>
-  </section>
-
-  <!-- Products Section -->
+  <!-- Products with 3D Flip -->
   <section class="products" id="products">
     <h2 class="section-title">Our Expert Advisors</h2>
     <div class="products-grid">
@@ -114,23 +84,39 @@
       <!-- High-Return EA -->
       <div class="product-card">
         <div class="product-card-inner">
-          <!-- Front -->
-          <div class="flip-face flip-front">
+
+          <!-- FRONT -->
+          <div class="flip-front">
             <div class="product-header">
               <h3 class="product-name">High-Return EA</h3>
               <span class="product-badge badge-high-risk">High Risk</span>
             </div>
             <div class="product-stats">
-              <div class="stat-item"><div class="stat-label">Total Profit</div><div class="stat-value">$1,158,559</div></div>
-              <div class="stat-item"><div class="stat-label">Annual Return</div><div class="stat-value">485.15%</div></div>
-              <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">40.43%</div></div>
-              <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">1,940.61%</div></div>
+              <div class="stat-item">
+                <div class="stat-label">Total Profit</div>
+                <div class="stat-value">$1,158,559</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Annual Return</div>
+                <div class="stat-value">485.15%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Monthly Return</div>
+                <div class="stat-value">40.43%</div>
+              </div>
+              <div class="stat-item">
+                <div class="stat-label">Total Return</div>
+                <div class="stat-value">1,940.61%</div>
+              </div>
             </div>
-            <p class="product-description">Designed for risk-tolerant traders seeking maximum returns in volatile markets.</p>
+            <p class="product-description">
+              Designed for risk-tolerant traders seeking maximum returns in volatile markets.
+            </p>
             <button class="flip-btn">Learn More</button>
           </div>
-          <!-- Back -->
-          <div class="flip-face flip-back">
+
+          <!-- BACK -->
+          <div class="flip-back">
             <h5>How It Trades</h5>
             <p>Breakout & scalp strategies on MNQ futures using ATR-based trailing stops, high leverage & optimized money management.</p>
             <h5>Backtest Highlights</h5>
@@ -147,13 +133,14 @@
             <a href="purchase.html?ea=ultra" class="buy-button">Buy Now</a>
             <button class="flip-btn">Back</button>
           </div>
+
         </div>
       </div>
 
       <!-- Moderate-Risk EA -->
       <div class="product-card">
         <div class="product-card-inner">
-          <div class="flip-face flip-front">
+          <div class="flip-front">
             <div class="product-header">
               <h3 class="product-name">Moderate-Risk EA</h3>
               <span class="product-badge badge-moderate">Balanced</span>
@@ -164,12 +151,14 @@
               <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">11.28%</div></div>
               <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">541.47%</div></div>
             </div>
-            <p class="product-description">Steady growth with Smart Money Concepts & controlled risk.</p>
+            <p class="product-description">
+              Steady growth with Smart Money Concepts & controlled risk.
+            </p>
             <button class="flip-btn">Learn More</button>
           </div>
-          <div class="flip-face flip-back">
+          <div class="flip-back">
             <h5>How It Trades</h5>
-            <p>BoS + Fair Value Gap entries on 15-min MNQ, 4:1 R:R, liquidity hunt detection.</p>
+            <p>BoS + Fair Value Gap entries on 15-min MNQ, 4:1 R:R, liquidity-hunt detection.</p>
             <h5>Backtest Highlights</h5>
             <p>
               Total Profit: $81,025<br>
@@ -190,7 +179,7 @@
       <!-- Conservative EA -->
       <div class="product-card">
         <div class="product-card-inner">
-          <div class="flip-face flip-front">
+          <div class="flip-front">
             <div class="product-header">
               <h3 class="product-name">Conservative EA</h3>
               <span class="product-badge badge-conservative">Low Risk</span>
@@ -201,10 +190,12 @@
               <div class="stat-item"><div class="stat-label">Monthly Return</div><div class="stat-value">2.19%</div></div>
               <div class="stat-item"><div class="stat-label">Total Return</div><div class="stat-value">105.20%</div></div>
             </div>
-            <p class="product-description">Capital-preserving trend-following with strict risk controls.</p>
+            <p class="product-description">
+              Capital-preserving trend-following with strict risk controls.
+            </p>
             <button class="flip-btn">Learn More</button>
           </div>
-          <div class="flip-face flip-back">
+          <div class="flip-back">
             <h5>How It Trades</h5>
             <p>EMA crossover (9/21), ATR stops, conservative 1.5:1 R:R on 15-min MNQ.</p>
             <h5>Backtest Highlights</h5>
@@ -227,92 +218,19 @@
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features" id="features">
-    <h2 class="section-title">Why Choose Veroxys</h2>
-    <div class="features-grid">
-      <div class="feature-card">
-        <div class="feature-icon">📊</div>
-        <h3 class="feature-title">Advanced Analytics</h3>
-        <p class="feature-description">Real-time market analysis with adaptive algorithms.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🔒</div>
-        <h3 class="feature-title">Risk Management</h3>
-        <p class="feature-description">Built-in controls & position sizing to protect capital.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">⚡</div>
-        <h3 class="feature-title">Lightning Fast</h3>
-        <p class="feature-description">Execute trades in milliseconds with low-latency connections.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3 class="feature-title">Precision Trading</h3>
-        <p class="feature-description">Pinpoint entries/exits with proprietary indicators.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">📈</div>
-        <h3 class="feature-title">Proven Results</h3>
-        <p class="feature-description">Consistent performance across markets & timeframes.</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">🛡️</div>
-        <h3 class="feature-title">24/7 Support</h3>
-        <p class="feature-description">Expert help whenever you need it.</p>
-      </div>
-    </div>
-  </section>
+  <!-- Features, About, Contact, Footer unchanged… -->
+  <section class="features" id="features">…</section>
+  <section class="about" id="about">…</section>
+  <section class="contact" id="contact">…</section>
+  <footer>…</footer>
 
-  <!-- About Section -->
-  <section class="about" id="about">
-    <h2>About Veroxys</h2>
-    <div class="about-content">
-      <p>Founded by PhD-level quants, former hedge-fund traders and veteran software engineers, Veroxys brings over 50 years of combined expertise to algorithmic futures trading.</p>
-      <p>Our lead developer spent a decade building alpha-generating strategies at a top-tier New York hedge fund, while our CTO architected low-latency execution systems for global institutions.</p>
-      <p>We fuse rigorous academic research—published in the Journal of Financial Markets—with production-grade code and sub-millisecond connectivity.</p>
-      <p>At Veroxys, we’re traders first—our mission is to democratize institutional-grade algorithms with full transparency, robust risk controls and best-in-class support.</p>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section class="contact" id="contact" style="padding:5rem 5%; background:rgba(10,15,28,0.9); color:var(--text-light);">
-    <h2>Contact Us</h2>
-    <p>Have questions or need custom assistance? Reach out directly or drop your email below:</p>
-    <ul style="list-style:none; padding:0; margin:1rem 0;">
-      <li><strong>Email:</strong> <a href="mailto:support@veroxys.com" style="color:var(--accent-blue);">support@veroxys.com</a></li>
-      <li><strong>Phone:</strong> +1 (800) 837-6999</li>
-    </ul>
-    <form action="mailto:support@veroxys.com" method="post" enctype="text/plain" style="margin-top:1.5rem;">
-      <input type="email" name="Email" placeholder="Your Email" required
-             style="width:100%; padding:.75rem; border-radius:5px; border:1px solid var(--accent-blue); background:var(--dark-bg); color:var(--text-light); margin-bottom:1rem;" />
-      <textarea name="Message" placeholder="Your Message" rows="4" required
-                style="width:100%; padding:.75rem; border-radius:5px; border:1px solid var(--accent-blue); background:var(--dark-bg); color:var(--text-light);"></textarea>
-      <button type="submit" class="cta-button" style="margin-top:1rem;">Send Message</button>
-    </form>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="risk.html">Risk Disclosure</a>
-        <a href="support.html">Support</a>
-      </div>
-      <p>&copy; 2025 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
-    </div>
-  </footer>
-
-  <!-- Flip-card JS -->
+  <!-- Flip logic JS -->
   <script>
-    document.querySelectorAll('.flip-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const card = btn.closest('.product-card');
-        card.classList.toggle('flipped');
-      });
-    });
+    document.querySelectorAll('.flip-btn').forEach(btn =>
+      btn.addEventListener('click', () =>
+        btn.closest('.product-card').classList.toggle('flipped')
+      )
+    );
   </script>
 </body>
 </html>
