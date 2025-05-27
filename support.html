@@ -1,69 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>Veroxys – Support</title>
-  <link rel="stylesheet" href="styles.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Center - Veroxys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3d5c;
+            --accent-blue: #4a7ba7;
+            --light-blue: #a8c7e0;
+            --dark-bg: #0a0f1c;
+            --text-light: #e0e6ed;
+            --text-muted: #8892b0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 123, 167, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            transform: rotate(180deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 8rem 5% 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-light);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--accent-blue);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            color: var(--text-muted);
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--light-blue);
+        }
+
+        .faq-item {
+            background: rgba(26, 61, 92, 0.1);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--accent-blue);
+            transform: translateY(-2px);
+        }
+
+        .faq-item p:first-child {
+            color: var(--text-light);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .troubleshooting-card {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+        }
+
+        .troubleshooting-card h3 {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(10, 15, 28, 0.8);
+            text-align: center;
+            border-top: 1px solid rgba(74, 123, 167, 0.3);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Background Effect */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(74, 123, 167, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 6rem 5% 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" />
-        VEROXYS
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#products">Products</a></li>
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <a href="index.html#products" class="cta-button">Get Started</a>
-    </div>
-  </nav>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="veroxys-logo.png" alt="Veroxys" class="logo-img">
+                VEROXYS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
 
-  <main style="padding:5rem 5%; max-width:900px; margin:0 auto; color:var(--text-light)">
-    <h1>Support</h1>
-    <p>Available Monday–Friday, 9 AM–5 PM Eastern Time.</p>
+    <!-- Main Content -->
+    <div class="page-content">
+        <h1>Support Center</h1>
+        <p>Welcome to the Veroxys Support Center. We're here to help you succeed with our Expert Advisor software.</p>
 
-    <h2>1. Contact Methods</h2>
-    <ul>
-      <li><strong>Email:</strong> <a href="mailto:support@veroxys.com">support@veroxys.com</a></li>
-      <li><strong>Live Chat:</strong> Click the chat widget in the bottom-right corner of the site.</li>
-      <li><strong>Phone:</strong> +1 (800) VER-OXYZ (837-6999), 9 AM–5 PM ET.</li>
-    </ul>
+        <h2>Contact Support</h2>
+        <div class="contact-info">
+            <p><strong>Technical Support Hours:</strong><br>
+            Monday - Friday: 9:00 AM - 5:00 PM ET<br>
+            <strong>Response Time:</strong> Within 2 business days<br><br>
+            <strong>Email:</strong> <a href="mailto:support@veroxys.com">support@veroxys.com</a><br>
+            <strong>Emergency:</strong> <a href="mailto:urgent@veroxys.com">urgent@veroxys.com</a> (for critical trading issues only)</p>
+        </div>
 
-    <h2>2. Knowledge Base</h2>
-    <p>Find in-depth guides, FAQs and troubleshooting at <a href="https://docs.veroxys.com">docs.veroxys.com</a>.</p>
+        <h2>Getting Started</h2>
+        <h3>Installation Guide</h3>
+        <ol>
+            <li>Download the EA installer from <a href="https://licensedownload.veroxys.com">licensedownload.veroxys.com</a></li>
+            <li>Run the installer and follow the setup wizard</li>
+            <li>Enter your unique License Key when prompted</li>
+            <li>Configure your trading parameters</li>
+            <li>Start with demo trading to verify settings</li>
+        </ol>
 
-    <h2>3. Submitting a Support Ticket</h2>
-    <ol>
-      <li>Log into your Veroxys account portal.</li>
-      <li>Navigate to <strong>Support → Submit Ticket</strong>.</li>
-      <li>Attach your EA license key, platform logs, and a detailed description.</li>
-      <li>Expect a response within 24 hours on business days.</li>
-    </ol>
+        <h3>System Requirements</h3>
+        <ul>
+            <li>Windows 10/11 or macOS 10.14+</li>
+            <li>MetaTrader 5 platform</li>
+            <li>Stable internet connection (latency &lt; 100ms recommended)</li>
+            <li>Minimum 4GB RAM, 8GB recommended</li>
+            <li>VPS hosting recommended for 24/7 operation</li>
+        </ul>
 
-    <h2>4. System Status & SLA</h2>
-    <p>Monitor our license server & download portal status at <a href="https://status.veroxys.com">status.veroxys.com</a>. Critical issues are escalated with a target response time of 1 hour.</p>
-  </main>
+        <h2>Frequently Asked Questions</h2>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="risk.html">Risk Disclosure</a>
-        <a href="support.html">Support</a>
-      </div>
-      <p>&copy; 2025 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
-    </div>
-  </footer>
+        <h3>License & Account Management</h3>
+        <div class="faq-item">
+            <p>Q: How many accounts can I use with one license?</p>
+            <p>A: Each license allows installation on up to 3 trading accounts that you own or control.</p>
+        </div>
 
-  <script src="main.js"></script>
-</body>
-</html>
+        <div class="faq-item">
+            <p>Q: Can I transfer my license to a different account?</p>
+            <p>A: Yes, contact support to deactivate the old account and activate a new one.</p>
+        </div>
+
+        <div class="faq-item">
+            <p>Q: What happens if I exceed my account limit?</p>
+            <p>A: The EA will stop functioning. Contact support to purchase additional licenses.</p>
+        </div>
+
+        <h3>Trading Configuration</h3>
+        <div class="faq-item">
+            <p>Q: What are the recommended settings for each EA?</p>
+            <p>A: Default settings are optimized for each EA type:</p>
+            <ul>
+                <li>Conservative: 0.01 lot size per $1,000 balance</li>
+                <li>Balanced: 0.02 lot size per $1,000 balance</li>
+                <li>Ultra-Aggressive: 0.05 lot size per $1,000 balance</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <p>Q: Can I modify the risk parameters?</p>
+            <p>A: Yes, but we recommend starting with default settings and adjusting gradually.</p>
+        </div>
+
+        <div class="faq-item">
+            <p>Q: What timeframes does the EA trade on?</p>
+            <p>A: Our EAs are optimized for M15 and H1 timeframes on the Micro E-Mini Nasdaq 100 (MNQ).</p>
+        </div>
+
+        <h3>Technical Issues</h3>
+        <div class="faq-item">
+            <p>Q: The EA is not placing trades. What should I check?</p>
+            <ul>
+                <li>Verify AutoTrading is enabled in MT5</li>
+                <li>Check that markets are open</li>
+                <li>Ensure sufficient margin is available</li>
+                <li>Confirm EA is attached to the correct chart</li>
+                <li>Review the Experts tab for error messages</li>
+            </ul>
+        </div>
+
+        <div class="faq-item">
+            <p>Q: I'm getting a "License Invalid" error.</p>
+            <p>A: This typically means:</p>
+            <ul>
+                <li>License Key was entered incorrectly</li>
+                <li>Account number doesn't match registered accounts</li>
+                <li>Subscription payment failed (for monthly plans)</li>
+            </ul>
+        </div>
+
+        <h2>Troubleshooting Guide</h2>
+
+        <h3>Common Issues and Solutions</h3>
+        
+        <div class="troubleshooting-card">
+            <h3>Connection Problems</h3>
+            <ul>
+                <li><strong>Issue:</strong> "No connection to trade server"</li>
+                <li><strong>Solution:</strong> Check internet connection, verify broker server settings, restart MT5</li>
+            </ul>
+        </div>
+
+        <div class="troubleshooting-card">
+            <h3>Performance Issues</h3>
+            <ul>
+                <li><strong>Issue:</strong> EA running slowly or freezing</li>
+                <li><strong>Solution:</strong> Close unnecessary charts, increase available RAM, consider VPS hosting</li>
+            </ul>
+        </div>
+
+        <div class="troubleshooting-card">
+            <h3>Trading Errors</h3>
+            <ul>
+                <li><strong>Issue:</strong> "Not enough money" error</li>
+                <li><strong>Solution:</strong> Reduce lot size, add funds, or check margin requirements</li>
+            </ul>
+        </div>
+
+        <h2>Best Practices</h2>
+        <ol>
+            <li><strong>Always test on demo first</strong> - Run for at least 2 weeks before live trading</li>
+            <li><strong>Monitor regularly</strong> - Check positions at least daily</li>
+            <li><strong>Keep software updated</strong> - Install updates within 48 hours of release</li>
+            <li><strong>Maintain trading journal</strong> - Document settings and performance</li>
+            <li><strong>Use VPS for reliability</strong> - Ensures 24/7 operation without interruption</li>
+        </ol>
+
+        <h2>Video Tutorials</h2>
+        <p>Access our comprehensive video library at <a href="https://tutorials.veroxys.com">tutorials.veroxys.com</a>:</p>
+        <ul>
+            <li>Installation and Setup (15 min)</li>
+            <li>Understanding Risk Parameters (20 min)</li>
+            <li>Optimization Techniques (30 min)</li>
+            <li>Troubleshooting Common Issues (25 min)</li>
+        </ul>
+
+        <h2>Submit a Support Ticket</h2>
+        <p>For fastest response, include the following in your support email:</p>
+        <ul>
+            <li>Your License Key (last 4 digits only)</li>
+            <li>MT5 build number</li>
+            <li>Broker name</li>
+            <li>Detailed description of the issue</li>
+            <li>Screenshots of any error messages</li>
+            <li>EA log files (found in MT5 Experts folder)</li>
+        </ul>
+
+        <h2>Community Resources</h2>
+        <ul>
+            <li><strong>User Forum:</strong>
