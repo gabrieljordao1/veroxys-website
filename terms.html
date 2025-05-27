@@ -1,94 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Veroxys – Terms of Service</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Veroxys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3d5c;
+            --accent-blue: #4a7ba7;
+            --light-blue: #a8c7e0;
+            --dark-bg: #0a0f1c;
+            --text-light: #e0e6ed;
+            --text-muted: #8892b0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 123, 167, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            transform: rotate(180deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 8rem 5% 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-light);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--accent-blue);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            color: var(--text-muted);
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--light-blue);
+        }
+
+        .warning-box {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid var(--danger);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .warning-box p {
+            color: var(--danger);
+            font-weight: 600;
+            margin-bottom: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(10, 15, 28, 0.8);
+            text-align: center;
+            border-top: 1px solid rgba(74, 123, 167, 0.3);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Background Effect */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(74, 123, 167, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 6rem 5% 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" />
-        VEROXYS
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#products">Products</a></li>
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <a href="index.html#products" class="cta-button">Get Started</a>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="veroxys-logo.png" alt="Veroxys" class="logo-img">
+                VEROXYS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-content">
+        <h1>Terms of Service</h1>
+        <p><strong>Effective Date: January 2024</strong></p>
+
+        <h2>1. Acceptance of Terms</h2>
+        <p>By accessing, downloading, or using the Veroxys Expert Advisor software ("Software"), you agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, do not use our Software.</p>
+
+        <h2>2. License Grant and Restrictions</h2>
+        <h3>2.1 License Grant</h3>
+        <p>Subject to your compliance with these Terms and payment of applicable fees, Veroxys LLC grants you a limited, non-exclusive, non-transferable, revocable license to use the Software according to your selected license tier:</p>
+        <ul>
+            <li><strong>Conservative EA:</strong> $499 one-time or $49/month</li>
+            <li><strong>Balanced (Core) EA:</strong> $999 one-time or $99/month</li>
+            <li><strong>Ultra-Aggressive EA:</strong> $1,499 one-time or $149/month</li>
+        </ul>
+
+        <h3>2.2 License Restrictions</h3>
+        <p>You may not:</p>
+        <ul>
+            <li>Reverse engineer, decompile, or disassemble the Software</li>
+            <li>Copy, modify, or create derivative works of the Software</li>
+            <li>Distribute, sublicense, lease, rent, or lend the Software</li>
+            <li>Use the Software for illegal trading activities</li>
+            <li>Share your License Key with any third party</li>
+            <li>Use the Software on accounts not registered to you</li>
+            <li>Bypass or attempt to bypass any security measures</li>
+        </ul>
+
+        <h2>3. Account Registration</h2>
+        <p>To use our Software, you must:</p>
+        <ul>
+            <li>Provide accurate and complete registration information</li>
+            <li>Maintain the security of your account credentials</li>
+            <li>Promptly notify us of any unauthorized use</li>
+            <li>Be at least 18 years old or of legal age in your jurisdiction</li>
+        </ul>
+
+        <h2>4. Payment Terms</h2>
+        <h3>4.1 Fees and Billing</h3>
+        <ul>
+            <li>All fees are due in advance and non-refundable</li>
+            <li>Subscription plans auto-renew until cancelled</li>
+            <li>Prices are subject to change with 30 days notice</li>
+            <li>You are responsible for all applicable taxes</li>
+        </ul>
+
+        <h3>4.2 Refund Policy</h3>
+        <div class="warning-box">
+            <p>All sales are final. No refunds will be issued under any circumstances.</p>
+        </div>
+        <p>This includes but is not limited to:</p>
+        <ul>
+            <li>Change of mind or buyer's remorse</li>
+            <li>Trading losses or poor performance</li>
+            <li>Technical issues with your trading platform</li>
+            <li>Incompatibility with your system</li>
+        </ul>
+
+        <h2>5. Trading Risks and Disclaimers</h2>
+        <h3>5.1 Risk Disclosure</h3>
+        <p><strong>IMPORTANT:</strong> Trading futures and forex involves substantial risk of loss and is not suitable for all investors. You should carefully consider whether trading is appropriate for you in light of your experience, objectives, financial resources, and other circumstances.</p>
+
+        <h3>5.2 No Guarantee of Profits</h3>
+        <p>Past performance is not indicative of future results. The Software's historical returns, including:</p>
+        <ul>
+            <li>Up to 1,940.61% total returns</li>
+            <li>485.15% annualized returns</li>
+            <li>Any backtest or live trading results</li>
+        </ul>
+        <p>Do NOT guarantee future profits. Markets can and will change, and losses may exceed your initial investment.</p>
+
+        <h3>5.3 User Responsibility</h3>
+        <p>You acknowledge and agree that:</p>
+        <ul>
+            <li>You are solely responsible for your trading decisions</li>
+            <li>You must understand the Software's settings and parameters</li>
+            <li>You are responsible for proper risk management</li>
+            <li>We do not provide trading advice or recommendations</li>
+        </ul>
+
+        <h2>6. Intellectual Property</h2>
+        <p>All rights, title, and interest in the Software, including all intellectual property rights, remain with Veroxys LLC. The Software is protected by copyright laws and international treaties.</p>
+
+        <h2>7. Support and Updates</h2>
+        <ul>
+            <li>Technical support is available Monday-Friday, 9 AM-5 PM ET</li>
+            <li>Response time: up to 2 business days</li>
+            <li>Minor updates and bug fixes are included</li>
+            <li>Major feature updates may require additional fees</li>
+        </ul>
+
+        <h2>8. Warranty Disclaimer</h2>
+        <p>THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE SOFTWARE WILL BE ERROR-FREE OR UNINTERRUPTED.</p>
+
+        <h2>9. Limitation of Liability</h2>
+        <p>IN NO EVENT SHALL VEROXYS LLC BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, DATA, OR TRADING OPPORTUNITIES. OUR TOTAL LIABILITY SHALL NOT EXCEED THE AMOUNT YOU PAID FOR THE SOFTWARE IN THE TWELVE MONTHS PRECEDING THE CLAIM.</p>
+
+        <h2>10. Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Veroxys LLC, its officers, directors, employees, and agents from any claims, damages, losses, or expenses arising from your use of the Software or violation of these Terms.</p>
+
+        <h2>11. Termination</h2>
+        <p>We may terminate your license immediately if you breach these Terms. Upon termination:</p>
+        <ul>
+            <li>Your license to use the Software ends immediately</li>
+            <li>You must cease all use of the Software</li>
+            <li>You must destroy all copies in your possession</li>
+            <li>All provisions that should survive termination will remain in effect</li>
+        </ul>
+
+        <h2>12. Governing Law</h2>
+        <p>These Terms are governed by the laws of [Your State], United States, without regard to conflict of law principles. Any disputes shall be resolved exclusively in the courts of [Your County, State].</p>
+
+        <h2>13. Changes to Terms</h2>
+        <p>We reserve the right to modify these Terms at any time. Changes will be posted on our website and effective upon posting. Your continued use constitutes acceptance of the modified Terms.</p>
+
+        <h2>14. Contact Information</h2>
+        <div class="contact-info">
+            <p><strong>Veroxys LLC</strong><br>
+            Email: <a href="mailto:legal@veroxys.com">legal@veroxys.com</a><br>
+            Phone: 1-800-VEROXYS<br>
+            Address: [Your Business Address]</p>
+        </div>
     </div>
-  </nav>
 
-  <main style="padding:5rem 5%; max-width:900px; margin:0 auto; color:var(--text-light)">
-    <h1>Terms of Service</h1>
-    <p><em>Last updated: May 26, 2025</em></p>
-
-    <h2>1. License Grant</h2>
-    <p>Veroxys LLC (“Licensor”) grants you (“Licensee”) a limited, non-exclusive, non-transferable, revocable license to install and run the purchased Expert Advisor(s) on up to <strong>[X]</strong> trading accounts you own.</p>
-
-    <h2>2. License Restrictions</h2>
-    <ul>
-      <li>No reverse-engineering, decompiling, or disassembly of the EA code.</li>
-      <li>No sublicensing, renting, leasing, or transferring your license key.</li>
-      <li>No use on accounts you do not own.</li>
-      <li>No use for unlawful or fraudulent trading activities.</li>
-    </ul>
-
-    <h2>3. Fees & Payment</h2>
-    <p>All sales are final; no refunds under any circumstances. Pricing:</p>
-    <ul>
-      <li><strong>Conservative EA:</strong> $499 one time or $49/month subscription</li>
-      <li><strong>Balanced EA:</strong> $999 one time or $99/month subscription</li>
-      <li><strong>Ultra-Aggressive EA:</strong> $1,499 one time or $149/month subscription</li>
-    </ul>
-
-    <h2>4. Delivery & Activation</h2>
-    <p>After payment, you’ll receive an email with your License Key and instructions from licensedownload.veroxys.com. Activations beyond the allowed number may be disabled.</p>
-
-    <h2>5. Updates & Support</h2>
-    <p>Minor bug-fix updates and compatibility patches are free. Major feature releases may incur an upgrade fee. Support is provided Mon–Fri, 9 AM–5 PM ET at <a href="support.html">Support</a>.</p>
-
-    <h2>6. Intellectual Property</h2>
-    <p>All rights, titles and interests in the software and documentation are owned by Veroxys LLC. You receive no ownership — only a license to use.</p>
-
-    <h2>7. Warranty Disclaimer</h2>
-    <p>The software is provided “as-is” without warranty of any kind, express or implied, including merchantability or fitness for a particular purpose.</p>
-
-    <h2>8. Limitation of Liability</h2>
-    <p>To the maximum extent permitted by law, Veroxys’s total liability arising from any claim related to the EA shall not exceed the amount you paid in the prior twelve months. Veroxys is not liable for indirect, special, or consequential damages.</p>
-
-    <h2>9. Indemnification</h2>
-    <p>You agree to indemnify and hold harmless Veroxys LLC, its officers and employees, from any losses, claims or expenses arising from your breach of these terms or misuse of the EA.</p>
-
-    <h2>10. Termination</h2>
-    <p>Veroxys may terminate your license immediately upon breach. You must uninstall and destroy all copies of the software and cease all use.</p>
-
-    <h2>11. Governing Law</h2>
-    <p>These terms are governed by the laws of the State of Delaware, USA. Disputes shall be resolved exclusively in Delaware state or federal courts.</p>
-
-    <h2>12. Entire Agreement</h2>
-    <p>This document, along with any referenced policies, constitutes the entire agreement between you and Veroxys and supersedes all prior agreements. Amendments will be posted at veroxys.com/terms.</p>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="risk.html">Risk Disclosure</a>
-        <a href="support.html">Support</a>
-      </div>
-      <p>&copy; 2025 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="risk.html">Risk Disclosure</a>
+                <a href="support.html">Support</a>
+            </div>
+            <p>&copy; 2024 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
+        </div>
+    </footer>
 </body>
 </html>
