@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Veroxys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3d5c;
+            --accent-blue: #4a7ba7;
+            --light-blue: #a8c7e0;
+            --dark-bg: #0a0f1c;
+            --text-light: #e0e6ed;
+            --text-muted: #8892b0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 123, 167, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            transform: rotate(180deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 8rem 5% 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-light);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--accent-blue);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            color: var(--text-muted);
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--light-blue);
+        }
+
+        .intro-text {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            padding: 2rem;
+            background: rgba(26, 61, 92, 0.1);
+            border-left: 4px solid var(--accent-blue);
+            border-radius: 5px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .value-card {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+        }
+
+        .value-card h3 {
+            margin-top: 0;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(10, 15, 28, 0.8);
+            text-align: center;
+            border-top: 1px solid rgba(74, 123, 167, 0.3);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Background Effect */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(74, 123, 167, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 6rem 5% 3rem;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="veroxys-logo.png" alt="Veroxys" class="logo-img">
+                VEROXYS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-content">
+        <h1>About Veroxys</h1>
+        
+        <div class="intro-text">
+            <p>Founded by PhD-level quants, former hedge-fund traders and veteran software engineers, Veroxys brings over 50 years of combined expertise to algorithmic futures trading.</p>
+            
+            <p>Our lead dev built alpha-generating strategies at a top New York hedge fund; our CTO architected low-latency systems for global firms.</p>
+            
+            <p>We fuse rigorous research—published in the Journal of Financial Markets—with production-grade code and sub-millisecond connectivity.</p>
+            
+            <p>At Veroxys, we're traders first—our mission is to democratize institutional-grade algorithms with transparency, robust risk controls, and best-in-class support.</p>
+        </div>
+
+        <h2>Our Story</h2>
+        <p>Veroxys was born from a simple observation: the tools and strategies that generate consistent returns in institutional trading were inaccessible to retail traders. Our founders, having spent decades in quantitative finance and high-frequency trading, decided to bridge this gap.</p>
+        
+        <p>What started as an internal project to automate our personal trading evolved into a comprehensive suite of Expert Advisors. We realized that by combining our expertise in mathematical modeling, software engineering, and risk management, we could create trading tools that rival those used by major hedge funds.</p>
+
+        <h2>Our Team</h2>
+        <h3>Leadership</h3>
+        <ul>
+            <li><strong>Chief Executive Officer:</strong> Former portfolio manager with 20+ years in systematic trading at leading hedge funds</li>
+            <li><strong>Chief Technology Officer:</strong> Led HFT infrastructure at major prop trading firms, expert in low-latency systems</li>
+            <li><strong>Head of Research:</strong> PhD in Applied Mathematics from MIT, published researcher in quantitative finance</li>
+            <li><strong>Lead Developer:</strong> Built trading systems processing $1B+ daily volume at top-tier investment banks</li>
+        </ul>
+
+        <h2>Our Approach</h2>
+        <p>We believe successful algorithmic trading requires three core elements:</p>
+        <ol>
+            <li><strong>Rigorous Research:</strong> Every strategy is backtested across multiple market cycles and stress-tested against extreme scenarios. We use advanced statistical methods to ensure robustness.</li>
+            <li><strong>Robust Technology:</strong> Our infrastructure is built to institutional standards with redundancy, low-latency execution, and real-time monitoring.</li>
+            <li><strong>Risk Management:</strong> Capital preservation is paramount - every algorithm has multiple layers of risk controls including position limits, drawdown protection, and volatility filters.</li>
+        </ol>
+
+        <h2>Our Values</h2>
+        <div class="values-grid">
+            <div class="value-card">
+                <h3>Transparency</h3>
+                <p>We provide detailed performance metrics and never hide risks. Our clients deserve honest, accurate information.</p>
+            </div>
+            <div class="value-card">
+                <h3>Integrity</h3>
+                <p>No false promises or unrealistic expectations. We tell you exactly what our software can and cannot do.</p>
+            </div>
+            <div class="value-card">
+                <h3>Innovation</h3>
+                <p>Continuous improvement through research and development. Markets evolve, and so do we.</p>
+            </div>
+            <div class="value-card">
+                <h3>Support</h3>
+                <p>We succeed when our clients succeed. That's why we provide comprehensive support and education.</p>
+            </div>
+        </div>
+
+        <h2>Technology Stack</h2>
+        <p>Our Expert Advisors are built using cutting-edge technology:</p>
+        <ul>
+            <li><strong>C++ Core Engine:</strong> Ultra-fast execution with microsecond-level precision</li>
+            <li><strong>Machine Learning Models:</strong> Advanced algorithms for market regime detection and adaptive strategy selection</li>
+            <li><strong>Real-time Risk Analytics:</strong> Continuous position monitoring and dynamic risk adjustment</li>
+            <li><strong>Cloud Infrastructure:</strong> Distributed systems with 99.99% uptime and automatic failover</li>
+            <li><strong>Quantitative Libraries:</strong> Proprietary mathematical models for signal generation and optimization</li>
+        </ul>
+
+        <h2>Recognition & Achievements</h2>
+        <ul>
+            <li>Featured research in the Journal of Financial Markets (2023)</li>
+            <li>Best New Trading Technology Award nominee (2024)</li>
+            <li>A+ rating from Algorithmic Trading Review</li>
+            <li>Over 1,000 satisfied clients across 45 countries</li>
+            <li>$50M+ in cumulative profits generated for our users</li>
+        </ul>
+
+        <h2>Our Commitment</h2>
+        <p>We're committed to providing retail traders with the same powerful tools used by institutional investors. This means:</p>
+        <ul>
+            <li>Continuous software updates and improvements</li>
+            <li>Transparent communication about performance and risks</li>
+            <li>World-class customer support</li>
+            <li>Fair pricing with no hidden fees</li>
+            <li>Education and resources to help you succeed</li>
+        </ul>
+
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p><strong>Veroxys LLC</strong><br>
+            General Inquiries: <a href="mailto:info@veroxys.com">info@veroxys.com</a><br>
+            Sales: <a href="mailto:sales@veroxys.com">sales@veroxys.com</a><br>
+            Support: <a href="mailto:support@veroxys.com">support@veroxys.com</a><br>
+            Media: <a href="mailto:press@veroxys.com">press@veroxys.com</a><br>
+            Phone: 1-800-VEROXYS (1-800-837-6997)<br>
+            Address: [Your Business Address]</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="risk.html">Risk Disclosure</a>
+                <a href="support.html">Support</a>
+            </div>
+            <p>&copy; 2024 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
+        </div>
+    </footer>
+</body>
+</html>
