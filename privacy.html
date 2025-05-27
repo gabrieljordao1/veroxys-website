@@ -1,104 +1,364 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Veroxys – Privacy Policy</title>
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Veroxys</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #1a3d5c;
+            --accent-blue: #4a7ba7;
+            --light-blue: #a8c7e0;
+            --dark-bg: #0a0f1c;
+            --text-light: #e0e6ed;
+            --text-muted: #8892b0;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            background: rgba(10, 15, 28, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(74, 123, 167, 0.3);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+            transform: rotate(180deg);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Page Content */
+        .page-content {
+            padding: 8rem 5% 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(135deg, var(--text-light), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: var(--text-light);
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 1rem;
+            color: var(--accent-blue);
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        ul, ol {
+            color: var(--text-muted);
+            margin: 1rem 0 1rem 2rem;
+            line-height: 1.8;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        strong {
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .contact-info {
+            background: rgba(26, 61, 92, 0.2);
+            border: 1px solid rgba(74, 123, 167, 0.3);
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-info a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--light-blue);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(10, 15, 28, 0.8);
+            text-align: center;
+            border-top: 1px solid rgba(74, 123, 167, 0.3);
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+        }
+
+        /* Background Effect */
+        .bg-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center top, rgba(74, 123, 167, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .page-content {
+                padding: 6rem 5% 3rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation -->
-  <nav id="navbar">
-    <div class="nav-container">
-      <a href="index.html" class="logo">
-        <img src="veroxys-logo.png" alt="Veroxys" class="logo-img" />
-        VEROXYS
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#products">Products</a></li>
-        <li><a href="index.html#features">Features</a></li>
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-      <a href="index.html#products" class="cta-button">Get Started</a>
+    <div class="bg-gradient"></div>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="veroxys-logo.png" alt="Veroxys" class="logo-img">
+                VEROXYS
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#products">Products</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="support.html">Support</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="page-content">
+        <h1>Privacy Policy</h1>
+        <p><strong>Last updated: January 2024</strong></p>
+        
+        <h2>1. Information We Collect</h2>
+        <p>Veroxys LLC ("we," "our," or "us") collects information from you when you:</p>
+        <ul>
+            <li>Purchase or download our Expert Advisor software</li>
+            <li>Create an account on our platform</li>
+            <li>Contact our support team</li>
+            <li>Subscribe to our newsletter or updates</li>
+        </ul>
+
+        <h3>Personal Information</h3>
+        <p>We may collect the following personal information:</p>
+        <ul>
+            <li>Name and contact information (email address, phone number)</li>
+            <li>Billing address and payment information</li>
+            <li>Trading account details (account numbers, broker information)</li>
+            <li>License Key usage and activation data</li>
+            <li>Communication preferences</li>
+        </ul>
+
+        <h3>Technical Information</h3>
+        <p>We automatically collect certain technical information when you use our software:</p>
+        <ul>
+            <li>IP address and geographic location</li>
+            <li>Device information and operating system</li>
+            <li>Software version and configuration settings</li>
+            <li>Trading performance metrics (anonymized)</li>
+            <li>Error logs and diagnostic information</li>
+        </ul>
+
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the collected information to:</p>
+        <ul>
+            <li>Process your purchases and deliver software licenses</li>
+            <li>Provide technical support and customer service</li>
+            <li>Send important updates about your software</li>
+            <li>Improve our products and develop new features</li>
+            <li>Prevent fraud and unauthorized use</li>
+            <li>Comply with legal obligations</li>
+        </ul>
+
+        <h2>3. Data Security</h2>
+        <p>We implement industry-standard security measures to protect your personal information, including:</p>
+        <ul>
+            <li>256-bit SSL encryption for all data transmissions</li>
+            <li>Secure servers with restricted access</li>
+            <li>Regular security audits and updates</li>
+            <li>PCI-compliant payment processing</li>
+        </ul>
+
+        <h2>4. Data Sharing and Disclosure</h2>
+        <p>We do not sell, trade, or rent your personal information. We may share your information only in the following circumstances:</p>
+        <ul>
+            <li><strong>Service Providers:</strong> With trusted third parties who assist in operating our business (payment processors, hosting providers)</li>
+            <li><strong>Legal Requirements:</strong> When required by law or to protect our rights</li>
+            <li><strong>Business Transfers:</strong> In connection with a merger, acquisition, or sale of assets</li>
+            <li><strong>With Your Consent:</strong> When you explicitly agree to share information</li>
+        </ul>
+
+        <h2>5. Data Retention</h2>
+        <p>We retain your personal information for as long as necessary to:</p>
+        <ul>
+            <li>Provide ongoing services and support</li>
+            <li>Comply with legal obligations</li>
+            <li>Resolve disputes and enforce agreements</li>
+            <li>Maintain backup and disaster recovery systems</li>
+        </ul>
+
+        <h2>6. Your Rights and Choices</h2>
+        <p>You have the right to:</p>
+        <ul>
+            <li>Access and review your personal information</li>
+            <li>Update or correct inaccurate data</li>
+            <li>Request deletion of your information (subject to legal requirements)</li>
+            <li>Opt-out of marketing communications</li>
+            <li>Export your data in a portable format</li>
+        </ul>
+
+        <h2>7. Cookies and Tracking</h2>
+        <p>Our website uses cookies to enhance your experience. You can control cookie settings through your browser preferences. We use:</p>
+        <ul>
+            <li>Essential cookies for website functionality</li>
+            <li>Analytics cookies to improve our services</li>
+            <li>Marketing cookies to provide relevant information</li>
+        </ul>
+
+        <h2>8. Contact Information</h2>
+        <p>For privacy-related questions or to exercise your rights, contact us at:</p>
+        <div class="contact-info">
+            <p><strong>Veroxys LLC</strong><br>
+            Email: <a href="mailto:privacy@veroxys.com">privacy@veroxys.com</a><br>
+            Phone: 1-800-VEROXYS<br>
+            Address: [Your Business Address]</p>
+        </div>
+
+        <h2>9. Changes to This Policy</h2>
+        <p>We may update this Privacy Policy periodically. We will notify you of material changes via email or through our software platform. Continued use of our services after changes constitutes acceptance of the updated policy.</p>
+
+        <h2>10. International Data Transfers</h2>
+        <p>If you are accessing our services from outside the United States, please note that your information may be transferred to and processed in the United States, where data protection laws may differ from your jurisdiction.</p>
     </div>
-  </nav>
 
-  <main style="padding:5rem 5%; max-width:900px; margin:0 auto; color:var(--text-light)">
-    <h1>Privacy Policy</h1>
-    <p><em>Last updated: May 26, 2025</em></p>
-
-    <h2>1. Introduction</h2>
-    <p>Veroxys LLC (“we,” “us,” or “our”) values your privacy. This policy explains how we collect, use, disclose, and protect your personal data when you visit our website or purchase our Expert Advisors.</p>
-
-    <h2>2. Information We Collect</h2>
-    <h3>2.1 Personal Information</h3>
-    <ul>
-      <li><strong>Account Data:</strong> Name, email, billing address, phone number when you sign up.</li>
-      <li><strong>Payment Data:</strong> Processed securely by Stripe or PayPal—no card data stored on our servers.</li>
-      <li><strong>Support Communications:</strong> Emails, chat transcripts, logs, screenshots you provide.</li>
-    </ul>
-    <h3>2.2 Technical & Usage Data</h3>
-    <ul>
-      <li><strong>Log Data:</strong> IP address, browser type and version, pages visited, timestamps.</li>
-      <li><strong>Cookies & Tracking:</strong> Session cookies for login, persistent cookies for preferences, Google Analytics (anonymized).</li>
-    </ul>
-
-    <h2>3. How We Use Your Information</h2>
-    <ul>
-      <li>Process purchases and deliver license keys.</li>
-      <li>Provide updates, bug fixes, and technical support.</li>
-      <li>Analyze website usage to improve features and performance.</li>
-      <li>Comply with legal obligations and enforce our agreements.</li>
-    </ul>
-
-    <h2>4. Data Sharing & Disclosure</h2>
-    <p>We do not sell or rent personal data. We may share with:</p>
-    <ul>
-      <li><strong>Payment Processors:</strong> Stripe, PayPal for transaction fulfillment.</li>
-      <li><strong>Service Providers:</strong> AWS, Cloudflare for hosting and delivery.</li>
-      <li><strong>Legal Authorities:</strong> If required by law or to protect our rights.</li>
-    </ul>
-
-    <h2>5. Cookies & Similar Technologies</h2>
-    <p>Cookies help keep you logged in, remember preferences, and track site performance. You can disable cookies via browser settings—but key functionality may break.</p>
-
-    <h2>6. Your Rights</h2>
-    <ul>
-      <li><strong>Access & Portability:</strong> Request a copy of your data.</li>
-      <li><strong>Correction:</strong> Update inaccurate or incomplete information.</li>
-      <li><strong>Deletion:</strong> Request erasure of your personal data, subject to legal requirements.</li>
-      <li><strong>Opt-Out:</strong> Unsubscribe from marketing emails via the link in any email.</li>
-    </ul>
-    <p>Submit requests to <a href="mailto:privacy@veroxys.com">privacy@veroxys.com</a>.</p>
-
-    <h2>7. Data Security</h2>
-    <p>We implement TLS encryption, secure key management, firewalls, and regular vulnerability scans. However, no system is completely immune to attack.</p>
-
-    <h2>8. Children’s Privacy</h2>
-    <p>Our products and services are not directed to children under 18. We do not knowingly collect data from minors.</p>
-
-    <h2>9. Changes to This Policy</h2>
-    <p>We may update this Privacy Policy. Changes take effect when posted, and we’ll update the “Last updated” date.</p>
-
-    <h2>10. Contact Us</h2>
-    <p>Questions or concerns? Email us at <a href="mailto:privacy@veroxys.com">privacy@veroxys.com</a>.</p>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-content">
-      <div class="footer-links">
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Service</a>
-        <a href="risk.html">Risk Disclosure</a>
-        <a href="support.html">Support</a>
-      </div>
-      <p>&copy; 2025 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
-    </div>
-  </footer>
-
-  <script src="main.js"></script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="risk.html">Risk Disclosure</a>
+                <a href="support.html">Support</a>
+            </div>
+            <p>&copy; 2024 Veroxys LLC. All rights reserved. Trading futures involves risk of loss.</p>
+        </div>
+    </footer>
 </body>
 </html>
