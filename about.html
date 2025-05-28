@@ -49,9 +49,7 @@
             align-items: center;
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        .logo {
+      .logo {
             display: flex;
             align-items: center;
             gap: 0.5rem;
@@ -65,7 +63,12 @@
             width: 45px;
             height: 45px;
             object-fit: contain;
-            transform: rotate(180deg);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
         }
 
         .nav-links {
